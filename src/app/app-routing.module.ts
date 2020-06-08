@@ -28,13 +28,13 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'usuarios',
-    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
-  },
-  {
     path: 'senha',
     loadChildren: () => import('./senha/senha.module').then( m => m.SenhaPageModule)
+  },  {
+    path: 'configuracao',
+    loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
   }
+
 
 
 ];

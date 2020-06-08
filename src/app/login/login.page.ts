@@ -81,7 +81,6 @@ export class LoginPage implements OnInit {
           .subscribe(
             response => { 
               this.processos = response; 
-              console.log(this.processos);
               this.events.publish('login:sucesso', this.processos);
               this.rota.navigate(['/home'])  
             },

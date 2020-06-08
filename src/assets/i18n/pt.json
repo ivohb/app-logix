@@ -5,6 +5,7 @@
   "BARRA": "Codigo de barras",
   "CAMPO_OBRIGATORIO": "Campo obrigatório",
   "CODIGO": "Código",
+  "CONFIGURACAO": "Configuração",
   "CPF": "C.P.F.",
   "EMAIL": "Email",
   "EMAIL_ENVIADO": "Uma nova senha foi enviada no seu email",
@@ -18,13 +19,14 @@
   "HOME": "Home",
   "IDENTIFICACAO": "Identificação",
   "LOGIN": "Login",
+  "OBJETIVO": "Objetivo",
   "OPCAO_SELECIONE": "Selecione uma opção do Menu",
   "OPERACAO_SUCESSO": "Operação efetuada com sucesso",
   "PROFILE": "Profile",
   "REC_SENHA": "Recuperar senha",
   "SENHA": "Senha",
   "SUCESSO": "Sucesso",
-  "WELCAME_APP": "Bem vindo ao APP de aprovação de documentos "
+  "WELCAME_APP": "Bem vindo ao APP da Ethos Industrial "
     
 } 
   

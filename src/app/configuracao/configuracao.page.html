@@ -1,0 +1,47 @@
+<ion-header  class="page-header">
+  <ion-buttons  slot="start">  
+    <ion-back-button class="up_20" defaultHref="home"></ion-back-button>
+    <ion-title class="down_11">{{'CONFIGURACAO'|translate}}</ion-title>
+  </ion-buttons>
+</ion-header>
+
+<ion-content ion-padding >
+  <div class="page-content" >
+    <ion-card class="imagem150">
+      <img src="/assets/img/configuracao.png" alt=""/>
+      <ion-card-header> 
+        <ion-card-title class="titulo">{{'OBJETIVO'|translate}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  
+    <ion-card-content class="help">
+      <div class="text-ident">
+        Esse módulo tem, por objetivo, cadastrar e manter atualizados os cadastros básicos do sistema. 
+        Suas Opções são:
+      </div>
+      <div class="bold100">
+        - Usuário:
+      </div>
+      <div class="text-ident">
+        Utilize essa funcionalidade, para visualizar, incluir, alterar ou excluir um usuário. 
+        Para cadastrar um usuário, você deverá preencher corretamente os seguintes campos:
+      </div>
+      <div class="text-ident">
+        <span class="bold70">Código:</span>  código de login, o qual será solicitado toda vez que o usuário 
+        acessar o sistema. Esse campo é do tipo texto e seu conteúdo deve conter entre 3 e 10 caracteres
+         de qualquer tipo.
+      </div>
+      <div class="text-ident">
+        <span class="bold70">Nome:</span> nome completo do usuário. Esse campo é do tipo texto e seu 
+        conteúdo poderá conter até 30 caracteres de qualquer tipo.
+      </div>
+      <div class="text-ident">
+        <span class="bold70">Senha:</span> senha do usuário. Esse campo é do tipo texto e seu conteúdo 
+        poderá conter até 15 caracteres de qualquer tipo. Porém, deve conter pelo menos: uma letra 
+        maiúscula, uma miníscula, um número e uma caractere especial tipo @, $, #, ., etc.<br/>
+        <b>Obs:</b> Posteriormente, o próprio usuário poderá alterar sua senha .
+      </div>
+    </ion-card-content>
+  
+  </div>
+</ion-content>

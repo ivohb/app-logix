@@ -25,6 +25,26 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
  
+.bold100 {
+    font-weight: 1000;
+}
+
+.bold90 {
+    font-weight: 900;
+}
+
+.bold70 {
+    font-weight: 700;
+}
+
+.bold50 {
+    font-weight: 500;
+}
+
+.down_11 {
+    position: relative; left: 30px; top: 11px;
+}
+
 .link  {
     text-decoration: underline; color: #3e70db;
 }
@@ -34,7 +54,7 @@
     border: solid 1px #18208b; font-size: 20px; 
     font-family: 'Times New Roman', Times, serif;
     padding-bottom: 5px; padding-left: 20px;
-    background-color: #72B8A7;
+    background-color: rgb(79, 157, 209);
 }
 
 
@@ -59,6 +79,11 @@
     font-weight: 600; 
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.help {
+    font-size: 18px; font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+  }
 
 .label {
     font-family: fantasy; font-size: 14px; 
@@ -94,9 +119,12 @@
     height: 7%; 
     width: 100%;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 20-x; font-weight: bold; color: #fff;    
+    font-size: 20px; font-weight: bold; color: #fff;    
 }
 
+.sobe {
+    padding-bottom: 10px;
+}
 .page-content {
     background: url("/assets/img/page_content.jpg") no-repeat;
     height: 93%;
@@ -109,6 +137,16 @@
     min-height: 40px;
 }
 
+.text-ident {
+    text-indent: 2em;
+}
+
+
 .title-header {
     padding-top: 20px;
 }
+
+.up_20 {
+    position: absolute; top: -20;
+}
+
