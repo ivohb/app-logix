@@ -33,6 +33,14 @@ const routes: Routes = [
   },  {
     path: 'configuracao',
     loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
+  },
+  {
+    path: 'edi-cliente',
+    loadChildren: () => import('./edi-cliente/edi-cliente.module').then( m => m.EdiClientePageModule)
+  },
+  {
+    path: 'edi-kanban',
+    loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)
   }
 
 
