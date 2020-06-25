@@ -17,8 +17,8 @@ export class HomePage {
       this.menuCtrl.enable(true);
     }
   
-    help() {
-      this.navCtrl.navigateBack('/help');
+    documentacao() {
+      this.navCtrl.navigateBack('/documentacao');
   }
   
   profile() {

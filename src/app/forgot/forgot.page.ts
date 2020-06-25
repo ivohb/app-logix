@@ -54,10 +54,6 @@ export class ForgotPage implements OnInit {
         }); 
   }
   
-  voltar() {
-    this.navCtrl.back();
-  }
-
   enviar() {
     this.authService.forgot(this.fg.value)
     .subscribe(response => {

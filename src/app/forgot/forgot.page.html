@@ -1,11 +1,11 @@
 
-<ion-header class="page-header" >
-  <ion-buttons> 
-    <ion-button  (click)="voltar()" > 
-      <ion-icon  slot="start" name="arrow-back"></ion-icon>
-    </ion-button>
-    <ion-title>{{'FORGOT'|translate}}</ion-title>    
-  </ion-buttons>
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" defaultHref="login"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'FORGOT'|translate}}</ion-title>
+  </ion-toolbar>  
 </ion-header>
 
 <ion-content ion-padding>

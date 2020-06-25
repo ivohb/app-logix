@@ -22,6 +22,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppFunction } from './app.function';
 import { LoadingService } from 'src/services/loading.service';
+import { PerfilService } from 'src/services/perfil.service';
 
 // caminho do arquivos de idiomas
 export function HttpLoaderFactory(http: HttpClient) {
@@ -63,12 +64,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImageUtilService,
     AuthService,
     ProcessoService,
+    PerfilService,
     LoadingService
   ],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
+
+  private static atualizou: string = "N";
+
+  static getAtualizou(){
+    return this.atualizou;
+  }
+  
+  static setAtualizou(atu : string) {
+    this.atualizou = atu;
+  }
 
  /* private static help: string = "";
 

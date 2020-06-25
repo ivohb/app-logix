@@ -1,4 +1,4 @@
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -8,7 +8,9 @@ export class AppFunction {
 
     constructor(
         private alertCtrl: AlertController,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private toastCtrl: ToastController
+
       ) {
 
     }
@@ -49,4 +51,13 @@ export class AppFunction {
         return texto;
     }
 
+    async presentToast(msg: string) {
+        const toast = await this.toastCtrl.create({
+          message: msg,
+          duration: 2000,  
+          color: 'header'
+        });
+        toast.present();
+      }
+    
 }

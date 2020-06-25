@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { HelpPageRoutingModule } from './help-routing.module';
-
-import { HelpPage } from './help.page';
+import { DocumentacaoPageRoutingModule } from './documentacao-routing.module';
+import { DocumentacaoPage } from './documentacao.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,9 +11,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-   HelpPageRoutingModule,
-   TranslateModule.forChild() 
+    DocumentacaoPageRoutingModule,
+    TranslateModule.forChild() 
   ],
-  declarations: [HelpPage]
+  declarations: [DocumentacaoPage]
 })
-export class HelpPageModule {}
+export class DocumentacaoPageModule {}

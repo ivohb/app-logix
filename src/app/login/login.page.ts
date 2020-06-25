@@ -40,10 +40,9 @@ export class LoginPage implements OnInit {
     this.storage.setLocalUser(null);
   }
 
-  help() {
-    this.navCtrl.navigateBack('/help');
+  documentacao() {
+    this.navCtrl.navigateBack('/documentacao');
 }
-
 
   forgot() {
     this.navCtrl.navigateBack('/forgot');

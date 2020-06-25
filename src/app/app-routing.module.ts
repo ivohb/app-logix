@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'help',
-    loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -30,9 +26,22 @@ const routes: Routes = [
   {
     path: 'senha',
     loadChildren: () => import('./senha/senha.module').then( m => m.SenhaPageModule)
-  },  {
+  },
+  {
     path: 'configuracao',
     loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
+  },
+  {
+    path: 'config-usuario',
+    loadChildren: () => import('./configuracao/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
+    path: 'config-usuario-editar/:id',
+    loadChildren: () => import('./configuracao/usuarios/usuario/usuario.module').then( m => m.UsuarioPageModule)
+  },
+  {
+    path: 'config-usuario-pesquisar',
+    loadChildren: () => import('./configuracao/usuarios/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
   },
   {
     path: 'edi-cliente',
@@ -41,8 +50,15 @@ const routes: Routes = [
   {
     path: 'edi-kanban',
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)
-  }
-
+  },
+  {
+    path: 'documentacao',
+    loadChildren: () => import('./documentacao/documentacao.module').then( m => m.DocumentacaoPageModule)
+  },
+  {
+    path: 'inventario',
+    loadChildren: () => import('./inventario/inventario.module').then( m => m.InventarioPageModule)
+  },
 
 
 ];

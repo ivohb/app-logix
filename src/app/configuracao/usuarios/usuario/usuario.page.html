@@ -1,0 +1,120 @@
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" defaultHref="config-usuario"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'USUARIO'|translate}}</ion-title>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+
+  <form [formGroup]="fg" >
+
+    <ion-item lines="full" class="label">
+      <ion-label stacked>{{ 'LABEL_ID' | translate }}</ion-label>
+      <ion-input disabled="true" formControlName="id" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_SITUACAO' | translate }}</ion-label>
+      <ion-select id="situacao" formControlName="situacao" class="caixa">
+        <ion-select-option value="A">{{ 'SITUACAO_ATIVO' | translate }} </ion-select-option>
+        <ion-select-option disabled="{{desabilita}}" value="I">{{ 'SITUACAO_INATIVO' | translate }}</ion-select-option>
+        <ion-select-option value="S">{{ 'SITUACAO_SUSPENSO' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating" class="label">{{ 'LABEL_PESSOA' | translate }}</ion-label>
+      <ion-select id="pessoa" formControlName="pessoa" class="caixa">
+        <ion-select-option value="F">{{ 'VALOR_FISICA' | translate }}</ion-select-option>
+        <ion-select-option value="J">{{ 'VALOR_JURIDICA' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full"  class="label">
+      <ion-label position="floating" class="label">{{ 'LABEL_CODIGO' | translate }}</ion-label>
+      <ion-input id="codigo" formControlName="codigo" type="text" disabled="{{desabilita}}"
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="15">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full"  class="label">
+      <ion-label position="floating" class="label">{{ 'LABEL_SENHA' | translate }}</ion-label>
+      <ion-input id="senha" formControlName="senha" type="password" disabled="{{desabilita}}"
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="15">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_NOME' | translate }}</ion-label>
+      <ion-input id="nome" formControlName="nome" type="text" 
+        class="caixa"  clear-input="ture" spellcheck="false"  maxlength="30" >
+      </ion-input>
+    </ion-item>
+    
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_EMAIL' | translate }}</ion-label>
+      <ion-input id="email" formControlName="email" type="email" 
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        class="caixa"  clear-input="ture" spellcheck="false" maxlength="50" >
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_CPF_CNPJ' | translate }}</ion-label>
+      <ion-input id="nome" formControlName="cpfCnpj" type="text" 
+        class="caixa"  clear-input="ture" spellcheck="false" maxlength="14" >
+      </ion-input>
+    </ion-item>
+    
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_PERFIL' | translate }}</ion-label>
+      <ion-select id="perfil" formControlName="perfil" class="caixa">
+        <ion-select-option *ngFor="let p of perfis" [value]="p.id">{{p.nome}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_TELEFONE' | translate }}</ion-label>
+      <ion-input id="telefone" formControlName="telefone" type="text" 
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="14" >
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_CELULAR' | translate }}</ion-label>
+      <ion-input id="celular" formControlName="celular" type="text" 
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="14" >
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label position="floating">{{ 'LABEL_USUARIO_ERP' | translate }}</ion-label>
+      <ion-input id="codigoErp" formControlName="codigoErp" type="text" 
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="14" >
+      </ion-input>
+    </ion-item>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-button class="button" color="header" (click)="save()" expand="block" [disabled]="fg.invalid"> 
+          <ion-icon name="save"></ion-icon>
+          {{ 'BOTAO_SALVAR' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button *ngIf="excluir" color="delete" class="button" (click)="delete()" expand="block" > 
+          <ion-icon name="trash"></ion-icon>
+          {{ 'BOTAO_EXCLUIR' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

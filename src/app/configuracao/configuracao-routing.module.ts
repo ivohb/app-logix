@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ConfiguracaoPage
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   }
 ];
 

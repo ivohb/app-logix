@@ -1,4 +1,10 @@
 executar o back-end: java -jar aprovardocum-0.0.1-SNAPSHOT.jar
-criar nova página:  ionic g page <nome> --spec=false
+criar nova página:  
+ionic g page <nome> --spec=false
+ionic g page [subpasta/]<nome> --spec=false
+ionic g page configuracao/usuarios --spec=false
+
+
 sites curso:
 -- https://www.youtube.com/watch?v=ZQ0Ub_zVhwU
+-- https://github.com/Pluritech/ion-mask (campo com mascara)

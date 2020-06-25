@@ -1,5 +1,7 @@
-<ion-header class="login-header">
-  <ion-title>{{ 'LOGIN' | translate }}</ion-title>
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-title>{{ 'LOGIN' | translate }}</ion-title>
+ </ion-toolbar>  
 </ion-header>
 
 <ion-content ion-padding  >
@@ -19,7 +21,7 @@
 
       <ion-item>
         <ion-label for="codigo" class="label" position="floating">
-          {{ 'CODIGO' | translate }} 
+          {{ 'LABEL_CODIGO' | translate }} 
         </ion-label>
         <ion-input id="codigo" [(ngModel)]="login.codigo" required="true"
           name="codigo" type="text" class="caixa" autofocus="ture" 
@@ -29,7 +31,7 @@
       
       <ion-item>
         <ion-label for="Senha" class="label" position="floating" >
-          {{ 'SENHA' | translate }}
+          {{ 'LABEL_SENHA' | translate }}
         </ion-label>
         <ion-input id="senha" [(ngModel)]="login.senha" name="senha"  
           type="password" maxlength="15" required="true">
@@ -40,10 +42,10 @@
   
         <ion-button class="button" (click)="entrar()" expand="block"> 
           <ion-icon slot="start" name="log-in"></ion-icon>
-          {{ 'ENTRAR' | translate }}
+          {{ 'BOTAO_ENTRAR' | translate }}
         </ion-button>
     
-        <ion-button class="ion-text-capitalize link" (click)="help()" fill="clear"> 
+        <ion-button class="ion-text-capitalize link" (click)="documentacao()" fill="clear"> 
           <ion-icon slot="start" color="medium" name="book"></ion-icon>
           {{ 'API_DOCUMENTACAO' | translate }}
         </ion-button><br/>

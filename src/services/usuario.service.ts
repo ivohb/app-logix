@@ -27,10 +27,10 @@ export class UsuarioService {
         //chaada do método get da API sem parâmetros
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
     }
-    
-    findPage(page : number, lines : number) {
+     
+    findPage(page : number, lines : number, nome : string) {
         console.log(page)
-        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/page?pagina=${page}&linhas=${lines}`);
+        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/page?pagina=${page}&linhas=${lines}&nome=${nome}`);
     }
     
     popup() : Observable<UsuarioDto[]> {
@@ -49,9 +49,7 @@ export class UsuarioService {
     }
 
     insert(obj : UsuarioDto) {
-        return this.http.post(
-            `${API_CONFIG.apiUrl}/usuario`, 
-            obj,
+        return this.http.post(`${API_CONFIG.apiUrl}/usuario`, obj,
             { 
                 observe: 'response', 
                 responseType: 'text'
@@ -61,9 +59,7 @@ export class UsuarioService {
 
     update(obj : UsuarioDto) {
         console.log(obj.id);
-        return this.http.put(
-            `${API_CONFIG.apiUrl}/usuario/${obj.id}`, 
-            obj,
+        return this.http.put(`${API_CONFIG.apiUrl}/usuario/${obj.id}`, obj,
             { 
                 observe: 'response', 
                 responseType: 'text'
@@ -72,8 +68,7 @@ export class UsuarioService {
     }
 
     delete(id : string) {
-        return this.http.delete(
-            `${API_CONFIG.apiUrl}/usuario/${id}`,
+        return this.http.delete(`${API_CONFIG.apiUrl}/usuario/${id}`,
             { 
                 observe: 'response', 
                 responseType: 'text'
@@ -82,9 +77,7 @@ export class UsuarioService {
     }
 
     updateSenha(obj : SenhaDto) {
-        return this.http.patch(
-            `${API_CONFIG.apiUrl}/usuario`, 
-            obj,
+        return this.http.patch(`${API_CONFIG.apiUrl}/usuario`, obj,
             { 
                 observe: 'response', 
                 responseType: 'text'
