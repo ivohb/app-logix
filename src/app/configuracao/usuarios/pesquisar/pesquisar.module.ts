@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PesquisarPageRoutingModule } from './pesquisar-routing.module';
 
 import { PesquisarPage } from './pesquisar.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PesquisarPageRoutingModule
+    PesquisarPageRoutingModule,
+    TranslateModule.forChild()
   ],
   declarations: [PesquisarPage]
 })

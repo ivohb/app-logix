@@ -9,4 +9,35 @@
 
 <ion-content ion-padding>
 
+  <div id="conteudo">
+
+    <div id="campos">
+
+      <ion-item>
+        <ion-label for="nome" class="label" position="floating">
+          {{ 'LABEL_NOME' | translate }} 
+        </ion-label>
+        <ion-input id="nome" [(ngModel)]="nome" 
+          name="nome" type="text" class="caixa" autofocus="ture" 
+          clear-input="ture" spellcheck="false" maxlength="30" >
+        </ion-input>
+      </ion-item>      
+
+    </div>
+
+    <div id="botoes">
+
+      <ion-list >    
+  
+        <ion-button class="button" (click)="pesquisar()" expand="block"> 
+          <ion-icon slot="start" name="search"></ion-icon>
+          {{ 'BOTAO_PESQUISAR' | translate }}
+        </ion-button>
+    
+      </ion-list>
+    
+    </div>
+
+  </div>
+
 </ion-content>

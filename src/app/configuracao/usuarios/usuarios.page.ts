@@ -4,7 +4,6 @@ import { LoadingService } from 'src/services/loading.service';
 import { UsuarioService } from 'src/services/usuario.service';
 import { Router } from '@angular/router';
 import { MenuController, NavController } from '@ionic/angular';
-import { AppModule } from 'src/app/app.module';
 import { AppFunction } from 'src/app/app.function';
 
 @Component({
@@ -14,12 +13,13 @@ import { AppFunction } from 'src/app/app.function';
 })
 
 export class UsuariosPage implements OnInit {
+
   usuarios : UsuarioDto[] = []; 
   numberPage: number = 0;
   totalPage: number = 0;
   totalElement: number = 0;
   searchkey: string = '';
-
+  
   constructor(  
     private loading: LoadingService,
     private usuarioService: UsuarioService,
@@ -29,20 +29,17 @@ export class UsuariosPage implements OnInit {
     private navCtrl: NavController
   ) {   }
  
+  
   //ao criar a página
-  ngOnInit() {
-    // this.menuCtrl.enable(false);
-    AppModule.setAtualizou("S");
-  }
+  ngOnInit() {  } 
 
   //ao carregar a pagina
   ionViewWillEnter() {
-    if (AppModule.getAtualizou() == 'S') {
-      this.numberPage = 0;
-      this.usuarios = [];
-      this.searchkey = '';
-      this.loadData();
-    }
+    console.log(this.usuarioService.nome);
+    this.numberPage = 0;
+    this.usuarios = [];
+    this.searchkey = '';
+    this.loadData();
   }
 
   //quando atinge o início da página
@@ -55,8 +52,8 @@ export class UsuariosPage implements OnInit {
   
   loadData() {
     this.loading.loadingPresent();
-    console.log("LoadData")
-    this.usuarioService.findPage(this.numberPage, 10, this.searchkey) //chamada assincrona da função
+    //chamada assincrona da função
+    this.usuarioService.findPage(this.numberPage, 10, this.usuarioService.nome) 
       .subscribe(response => { //função executa na resposta, se tudo ok
           //caso queira carregar as imaens do amazon, chamar a funcão 
           //loadImageUrls(start, end);
@@ -71,7 +68,7 @@ export class UsuariosPage implements OnInit {
           if (this.totalElement == 0) {
             let texto = this.appFunc.getTexto("DADOS_NAO_ENCONTRADO");
             this.appFunc.presentToast(texto);
-                }
+          }
           //this.loadImageUrls(start, end);
       },
       error => {
@@ -97,8 +94,8 @@ export class UsuariosPage implements OnInit {
   }
 
   showObject(id: string) {
-    console.log("ID "+id);
-    this.navCtrl.navigateBack('/config-usuario-editar/1');
+    let url = '/config-usuario-editar/'+id;
+    this.navCtrl.navigateBack(url);
   }
     
   //quando atinge o final da página

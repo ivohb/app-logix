@@ -72,7 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export class AppModule {
 
-  private static atualizou: string = "N";
+  private static atualizou: string = "S";
 
   static getAtualizou(){
     return this.atualizou;

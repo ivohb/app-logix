@@ -8,3 +8,4 @@ ionic g page configuracao/usuarios --spec=false
 sites curso:
 -- https://www.youtube.com/watch?v=ZQ0Ub_zVhwU
 -- https://github.com/Pluritech/ion-mask (campo com mascara)
+-- eventos da página https://ionicframework.com/jp/docs/es/angular/lifecycle

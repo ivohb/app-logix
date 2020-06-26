@@ -5,8 +5,7 @@ import { PerfilDto } from 'src/models/perfil.dto';
 import { PerfilService } from 'src/services/perfil.service';
 import { UsuarioService } from 'src/services/usuario.service';
 import { LoadingService } from 'src/services/loading.service';
-import { AppModule } from 'src/app/app.module';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { AppFunction } from 'src/app/app.function';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -61,30 +60,30 @@ export class UsuarioPage implements OnInit {
 
   //Cada vez que a página for aberta
   ionViewWillEnter() {
-    AppModule.setAtualizou("N");
     console.log("ID "+this.id);
-     this.perfilService.findAll()
-      .subscribe(response => {
-        this.perfis = response;
-      },
-      error => {
-        console.log(error);
-      });
+    this.perfilService.findAll()
+    .subscribe(response => {
+      this.perfis = response;
+    },
+    error => {
+      console.log(error);
+    });
 
-      if (this.id == null || this.id == '0') {
-        this.fg.controls.situacao.setValue('I');
-        this.desabilita = false;
-        this.excluir = false;
-      } else {
-        this.desabilita = true;
-        this.usuarioService.findById(this.id) //chamada assincrona da função
-        .subscribe(
-          response => { //função executa na resposta, se tudo ok
-            this.usuario = response; //captura os usuários
-            this.setValues();
-          },
-          error => {}); //função executada se der erro 
-      }    
+    if (this.id == '0') {
+      this.fg.controls.id.setValue(this.id);
+      this.fg.controls.situacao.setValue('I');
+      this.desabilita = false;
+      this.excluir = false;
+    } else {
+      this.desabilita = true;
+      this.usuarioService.findById(this.id) //chamada assincrona da função
+      .subscribe(
+        response => { //função executa na resposta, se tudo ok
+          this.usuario = response; //captura os usuários
+          this.setValues();
+        },
+        error => {}); //função executada se der erro 
+    }    
   
   }
  
@@ -109,11 +108,9 @@ export class UsuarioPage implements OnInit {
     }
   
   save() {      
-    if (this.fg.controls.id.value == "") {
-      console.log('Inclusão'); 
+    if (this.fg.controls.id.value == 0) {
       this.insert();
     } else {
-      console.log('Alteração'); 
       this.update();
     } 
   }
@@ -123,7 +120,6 @@ export class UsuarioPage implements OnInit {
     this.usuarioService.insert(this.fg.value)
     .subscribe(response => {
       this.loading.loadingDismiss();
-      AppModule.setAtualizou("S");  
       let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
       this.appFunc.presentToast(texto);
     },
@@ -138,7 +134,6 @@ export class UsuarioPage implements OnInit {
     this.usuarioService.update(this.fg.value)
     .subscribe(response => {
       this.loading.loadingDismiss();
-      AppModule.setAtualizou("S");  
       let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
       this.appFunc.presentToast(texto);
       if (this.fg.controls.situacao.value != 'I') {
@@ -165,8 +160,8 @@ export class UsuarioPage implements OnInit {
       this.loading.loadingDismiss();
       let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
       this.appFunc.presentToast(texto);
-      AppModule.setAtualizou("S");
       this.usuario = null;
+      this.navCtrl.back();
     },
     error => {
       this.loading.loadingDismiss();

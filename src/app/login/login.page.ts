@@ -5,7 +5,6 @@ import { LoginDto } from 'src/models/login.dto';
 import { AuthService } from 'src/services/auth.servece';
 import { ProcessoDto } from 'src/models/processo.dto';
 import { ProcessoService } from 'src/services/processo.service';
-import { TranslateService } from '@ngx-translate/core'; //internacionalização 
 import { StorageService } from 'src/services/storage.service';
 import { AppFunction } from '../app.function';
 
@@ -29,7 +28,6 @@ export class LoginPage implements OnInit {
     private auth: AuthService,
     private proc: ProcessoService,
     private rota: Router,
-    private translate: TranslateService, //internacionalização 
     public events: Events,
     private navCtrl: NavController,
     private menuCtrl: MenuController  ) { 

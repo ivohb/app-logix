@@ -17,4 +17,6 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   declarations: [UsuariosPage]
 })
-export class UsuariosPageModule {}
+export class UsuariosPageModule {
+
+}

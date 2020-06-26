@@ -12,6 +12,8 @@ import { SenhaDto } from '../models/senha.dto';
 @Injectable() //possibilita a injeção do serviço
 export class UsuarioService {
 
+    nome: string = "will";
+    
     constructor(
         public http: HttpClient,
         public storage: StorageService,
