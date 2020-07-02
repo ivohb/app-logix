@@ -10,21 +10,26 @@ import { UsuarioService } from 'src/services/usuario.service';
 })
 export class PesquisarPage implements OnInit {
 
+  codigo: string = '';
   nome: string = '';
+  pessoa: string = '';
+  cpfCnpj: string = '';
+  codPessoa: string = '';
 
   constructor(
     private navCtrl: NavController, 
-    private appFunc: AppFunction,
-    private usuarioService: UsuarioService,
+    private usuarioService: UsuarioService, 
 
   ) { }
 
   ngOnInit() {
-    console.log(this.usuarioService.nome);
   }
 
   pesquisar() {
+    this.usuarioService.codigo = this.codigo;
     this.usuarioService.nome = this.nome;
+    this.usuarioService.pessoa = this.pessoa;
+    this.usuarioService.cpfCnpj = this.cpfCnpj;
     this.navCtrl.back();
   }
 }

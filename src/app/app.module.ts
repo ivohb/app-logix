@@ -23,6 +23,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppFunction } from './app.function';
 import { LoadingService } from 'src/services/loading.service';
 import { PerfilService } from 'src/services/perfil.service';
+import { ModuloService } from 'src/services/modulo.service';
 
 // caminho do arquivos de idiomas
 export function HttpLoaderFactory(http: HttpClient) {
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImageUtilService,
     AuthService,
     ProcessoService,
+    ModuloService,
     PerfilService,
     LoadingService
   ],

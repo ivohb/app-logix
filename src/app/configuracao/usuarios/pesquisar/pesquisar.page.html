@@ -1,9 +1,10 @@
 <ion-header >
   <ion-toolbar color="header">
     <ion-buttons slot="start">
-      <ion-back-button class="button-header" defaultHref="config-usuario"></ion-back-button>
+      <ion-back-button class="button-header" 
+        defaultHref="configuracao/:modulo/usuarios"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'USUARIO_PESQUISAR'|translate}}</ion-title>
+    <ion-title >{{'USUARIO'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -14,28 +15,54 @@
     <div id="campos">
 
       <ion-item>
-        <ion-label for="nome" class="label" position="floating">
-          {{ 'LABEL_NOME' | translate }} 
+        <ion-label for="codigo" class="label" position="floating">
+          {{ 'LABEL_CODIGO' | translate }} 
         </ion-label>
-        <ion-input id="nome" [(ngModel)]="nome" 
+        <ion-input id="codigo" [(ngModel)]="codigo" 
           name="nome" type="text" class="caixa" autofocus="ture" 
           clear-input="ture" spellcheck="false" maxlength="30" >
         </ion-input>
       </ion-item>      
 
+      <ion-item>
+        <ion-label for="nome" class="label" position="floating">
+          {{ 'LABEL_NOME' | translate }} 
+        </ion-label>
+        <ion-input id="nome" [(ngModel)]="nome" 
+          name="nome" type="text" class="caixa" 
+          clear-input="ture" spellcheck="false" maxlength="30" >
+        </ion-input>
+      </ion-item>      
+
+      <ion-item>
+        <ion-label for="cpfCnpj" class="label" position="floating">
+          {{ 'LABEL_CPF_CNPJ' | translate }} 
+        </ion-label>
+        <ion-input id="cpfCnpj" [(ngModel)]="cpfCnpj" 
+          name="cpfCnpj" type="text" class="caixa" 
+          clear-input="ture" spellcheck="false" maxlength="30" >
+        </ion-input>
+      </ion-item>      
+
+      <ion-item lines="full" class="label">
+        <ion-label for="pessoa" position="floating" class="label">
+            {{ 'LABEL_PESSOA' | translate }}
+        </ion-label>
+        <ion-select id="pessoa" class="caixa" [(ngModel)]="pessoa" placeholder="Select One" >
+          <ion-select-option value="F">{{ 'VALOR_FISICA' | translate }}</ion-select-option>
+          <ion-select-option value="J">{{ 'VALOR_JURIDICA' | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+        
     </div>
 
     <div id="botoes">
-
       <ion-list >    
-  
         <ion-button class="button" (click)="pesquisar()" expand="block"> 
           <ion-icon slot="start" name="search"></ion-icon>
           {{ 'BOTAO_PESQUISAR' | translate }}
         </ion-button>
-    
       </ion-list>
-    
     </div>
 
   </div>

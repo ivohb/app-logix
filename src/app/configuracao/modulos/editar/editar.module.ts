@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { UsuarioPageRoutingModule } from './usuario-routing.module';
-import { UsuarioPage } from './usuario.page';
+
+import { EditarPageRoutingModule } from './editar-routing.module';
+
+import { EditarPage } from './editar.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -11,10 +14,10 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule, //necessário para funcionar FormGroup 
-    UsuarioPageRoutingModule,
+    EditarPageRoutingModule,
+    ReactiveFormsModule, //necessário para funcionar FormGroup
     TranslateModule.forChild()
   ],
-  declarations: [UsuarioPage]
+  declarations: [EditarPage]
 })
-export class UsuarioPageModule {}
+export class EditarPageModule {}

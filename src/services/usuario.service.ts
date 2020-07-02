@@ -12,8 +12,11 @@ import { SenhaDto } from '../models/senha.dto';
 @Injectable() //possibilita a injeção do serviço
 export class UsuarioService {
 
-    nome: string = "will";
-    
+    codigo: string = '';
+    nome: string = '';
+    pessoa: string = '';
+    cpfCnpj: string = '';
+       
     constructor(
         public http: HttpClient,
         public storage: StorageService,
@@ -29,10 +32,12 @@ export class UsuarioService {
         //chaada do método get da API sem parâmetros
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
     }
-     
-    findPage(page : number, lines : number, nome : string) {
-        console.log(page)
-        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/page?pagina=${page}&linhas=${lines}&nome=${nome}`);
+    
+    findPage(page: number, lines:number) {
+        let url = 
+            `${API_CONFIG.apiUrl}/usuario/page?pagina=${page}&linhas=${lines}
+            &codigo=${this.codigo}&nome=${this.nome}&pessoa=${this.pessoa}&cpfCnpj=${this.cpfCnpj}`;
+        return this.http.get<UsuarioDto[]>(url);
     }
     
     popup() : Observable<UsuarioDto[]> {

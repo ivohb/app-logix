@@ -11,10 +11,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(public storage: StorageService) {
     }
-
+ 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         
-        let localUser = this.storage.getLocalUser();
+        let localUser = this.storage.getLocalUser();  
         //obtem o tamanho da url para o back end (API)
         let N = API_CONFIG.apiUrl.length;
         //cria variável requestToAPI com reultado da comparação  

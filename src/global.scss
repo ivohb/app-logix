@@ -50,10 +50,17 @@
     position: relative; left: 30px; top: 11px;
 }
 
+.padding-left-10 {
+    padding-left: 10px;
+}
+
 .link  {
     text-decoration: underline; color: #3e70db;
 }
-
+ 
+.opcoes {
+    text-align: center; padding-left:15%; color: #3e70db;
+  }
 
 .footer {
     border: solid 1px #18208b; font-size: 20px; 
@@ -61,7 +68,6 @@
     padding-bottom: 5px; padding-left: 20px;
     background-color: rgb(79, 157, 209);
 }
-
 
 .titulo {
     text-align: center; color: #221D5F;
@@ -90,7 +96,7 @@
   }
 
 .label {
-    font-family: 'Courier New', Courier, monospace, Arial; font-style: italic; color: #000000;
+    font-family: 'Times New Roman', Courier, monospace, Arial; font-style: italic; color: #000000;
 }
 
 .imagem150 img {

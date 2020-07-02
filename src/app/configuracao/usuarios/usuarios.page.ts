@@ -2,8 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { UsuarioDto } from 'src/models/usuario.dto';
 import { LoadingService } from 'src/services/loading.service';
 import { UsuarioService } from 'src/services/usuario.service';
-import { Router } from '@angular/router';
-import { MenuController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { AppFunction } from 'src/app/app.function';
 
 @Component({
@@ -14,18 +13,15 @@ import { AppFunction } from 'src/app/app.function';
 
 export class UsuariosPage implements OnInit {
 
-  usuarios : UsuarioDto[] = []; 
+  usuarios : UsuarioDto[] = [];  
   numberPage: number = 0;
   totalPage: number = 0;
   totalElement: number = 0;
-  searchkey: string = '';
   
   constructor(  
     private loading: LoadingService,
     private usuarioService: UsuarioService,
     private appFunc: AppFunction,
-    private router: Router,
-    private menuCtrl: MenuController,
     private navCtrl: NavController
   ) {   }
  
@@ -38,22 +34,13 @@ export class UsuariosPage implements OnInit {
     console.log(this.usuarioService.nome);
     this.numberPage = 0;
     this.usuarios = [];
-    this.searchkey = '';
     this.loadData();
   }
 
-  //quando atinge o início da página
-  doRefresh(event) {
-    setTimeout(() => {
-      //this.ionViewWillEnter();
-      event.target.complete();
-    }, 500);
-  }
-  
   loadData() {
     this.loading.loadingPresent();
     //chamada assincrona da função
-    this.usuarioService.findPage(this.numberPage, 10, this.usuarioService.nome) 
+    this.usuarioService.findPage(this.numberPage, 10) 
       .subscribe(response => { //função executa na resposta, se tudo ok
           //caso queira carregar as imaens do amazon, chamar a funcão 
           //loadImageUrls(start, end);
@@ -77,24 +64,24 @@ export class UsuariosPage implements OnInit {
 
   }
 
-  find() { 
-    console.log("pesquisar "+this.searchkey);
-    //this.numberPage = 0;
-    //this.usuarios = [];
-    //this.loadData();    
-    this.navCtrl.navigateBack('/config-usuario-pesquisar');
+  //quando atinge o início da página
+  doRefresh(event) {
+    setTimeout(() => {
+      //this.ionViewWillEnter();
+      event.target.complete();
+    }, 500);
   }
-
-  findChange(event) {
-    console.log("Key "+this.searchkey);
+  
+  find() { 
+    this.navCtrl.navigateBack('/configuracao/usuarios/pesquisar');
   }
 
   addObject() {
-    this.navCtrl.navigateBack('/config-usuario-editar/0');
+    this.navCtrl.navigateBack('/configuracao/usuarios/editar/0');
   }
 
   showObject(id: string) {
-    let url = '/config-usuario-editar/'+id;
+    let url = `/configuracao/usuarios/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }
     

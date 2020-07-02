@@ -7,6 +7,8 @@ import { ProcessoDto } from 'src/models/processo.dto';
 import { ProcessoService } from 'src/services/processo.service';
 import { StorageService } from 'src/services/storage.service';
 import { AppFunction } from '../app.function';
+import { ModuloService } from 'src/services/modulo.service';
+import { ModuloDto } from 'src/models/modulo.dto';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +22,15 @@ export class LoginPage implements OnInit {
     senha: ""
   };
   
-  processos: ProcessoDto[];
-  
+  processos: ProcessoDto[]; 
+  modulos: ModuloDto[];
+
   constructor(
     private appFunc: AppFunction,
     private storage: StorageService,
     private auth: AuthService,
     private proc: ProcessoService,
+    private modulo: ModuloService,
     private rota: Router,
     public events: Events,
     private navCtrl: NavController,
@@ -71,14 +75,13 @@ export class LoginPage implements OnInit {
       .subscribe(response => {
         this.auth.login(
           response.headers.get('Authorization'), response.headers.get('Profile'));
-          console.log("Login OK");
           let role =  response.headers.get('Profile');
           //this.leProcessos(role);
-          this.proc.findByPerfil(role)
+          this.modulo.findByPerfil(role)
           .subscribe(
             response => { 
-              this.processos = response; 
-              this.events.publish('login:sucesso', this.processos);
+              this.modulos = response; 
+              this.events.publish('login:sucesso', this.modulos);
               this.rota.navigate(['/home'])  
             },
             error => { });       

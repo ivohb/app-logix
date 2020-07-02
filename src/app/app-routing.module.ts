@@ -28,27 +28,39 @@ const routes: Routes = [
     loadChildren: () => import('./senha/senha.module').then( m => m.SenhaPageModule)
   },
   {
-    path: 'configuracao',
+    path: 'configuracao/:modulo',
     loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
+  },   
+  {
+    path: 'configuracao/:modulo/modulos',
+    loadChildren: () => import('./configuracao/modulos/modulos.module').then( m => m.ModulosPageModule)
   },
   {
-    path: 'config-usuario',
+    path: 'configuracao/modulos/pesquisar',
+    loadChildren: () => import('./configuracao/modulos/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
+  },
+  {
+    path: 'configuracao/modulos/editar/:id',
+    loadChildren: () => import('./configuracao/modulos/editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
+    path: 'configuracao/:modulo/usuarios',
     loadChildren: () => import('./configuracao/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
   {
-    path: 'config-usuario-editar/:id',
+    path: 'configuracao/usuarios/editar/:id',
     loadChildren: () => import('./configuracao/usuarios/usuario/usuario.module').then( m => m.UsuarioPageModule)
   },
   {
-    path: 'config-usuario-pesquisar',
+    path: 'configuracao/usuarios/pesquisar',
     loadChildren: () => import('./configuracao/usuarios/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
   },
   {
-    path: 'edi-cliente',
+    path: 'edi-cliente/:modulo',
     loadChildren: () => import('./edi-cliente/edi-cliente.module').then( m => m.EdiClientePageModule)
   },
   {
-    path: 'edi-kanban',
+    path: 'edi-kanban/:modulo',
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)
   },
   {
@@ -56,7 +68,7 @@ const routes: Routes = [
     loadChildren: () => import('./documentacao/documentacao.module').then( m => m.DocumentacaoPageModule)
   },
   {
-    path: 'inventario',
+    path: 'inventario/:modulo',
     loadChildren: () => import('./inventario/inventario.module').then( m => m.InventarioPageModule)
   },
 

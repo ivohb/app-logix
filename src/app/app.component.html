@@ -9,12 +9,12 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="p.path">
+            <ion-item [routerDirection]="'root'" [routerLink]="p.path+'/'+p.id"> 
               <img [src]="p.icone"/>
               <!--ion-icon slot="start" [name]="p.icon"></ion-icon>-->
               <ion-label class="espaco10">
                 {{p.titulo}}
-              </ion-label>
+              </ion-label> 
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
