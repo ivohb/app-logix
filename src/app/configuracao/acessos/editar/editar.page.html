@@ -1,0 +1,43 @@
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" 
+        defaultHref="configuracao/:modulo/acessos"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'HEADER_ACESSO'|translate}}</ion-title>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+
+  <ion-item lines="full" class="label">
+    <ion-label for="perfil" position="floating" class="label">{{ 'LABEL_PERFIL' | translate }}</ion-label>
+    <ion-select id="perfil"  [(ngModel)]="perfil" class="caixa" (ionChange)="findProcessos()">
+      <ion-select-option *ngFor="let p of perfis" [value]="p.id">{{p.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="full" class="label">
+    <ion-label for="modulo" position="floating" class="label">{{ 'LABEL_MODULO' | translate }}</ion-label>
+    <ion-select id="modulo" [(ngModel)]="modulo" class="caixa" (ionChange)="findProcessos()">
+      <ion-select-option *ngFor="let p of modulos" [value]="p.id">{{p.titulo}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list >
+    <ion-item color="tabela">
+      <ion-col >{{'LABEL_ID'|translate}}</ion-col>
+      <ion-col >{{'LABEL_PROCESSO'|translate}}</ion-col>
+      <ion-col size="1">{{'CABEC_INCLUIR'|translate}}</ion-col>
+    </ion-item>
+    <ion-item-sliding *ngFor="let obj of processos">      
+      <ion-item class="tabela" (click)="addObject(obj)">
+        <ion-col  > {{ obj.id }}</ion-col>
+        <ion-col  > {{ obj.titulo }}</ion-col>
+        <ion-col size="1"><ion-icon name="person-add"></ion-icon></ion-col>
+      </ion-item>  
+    </ion-item-sliding>
+  </ion-list>
+
+
+</ion-content>

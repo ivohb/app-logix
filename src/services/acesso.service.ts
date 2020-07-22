@@ -3,35 +3,38 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { StorageService } from './storage.service';
 import { API_CONFIG } from 'src/config/api.config';
-import { PerfilDto } from 'src/models/perfil.dto';
+import { AcessoDto } from 'src/models/acesso.dto';
 
 @Injectable() //possibilita a injeção do serviço
-export class PerfilService {
+export class AcessoService {
 
-    
+    perfil: number = 0;
+    modulo: number = 0;    
+
     constructor(
         public http: HttpClient,
         public storage: StorageService) {
     }
 
-    findById(id: string) : Observable<PerfilDto> {
-        return this.http.get<PerfilDto>(
-            `${API_CONFIG.apiUrl}/perfil/${id}`);
+    findById(id: string) : Observable<AcessoDto> {
+        return this.http.get<AcessoDto>(
+            `${API_CONFIG.apiUrl}/acesso/${id}`);
     }
 
-    findAll() : Observable<PerfilDto[]> {
+    findAll() : Observable<AcessoDto[]> {
         //chaada do método get da API sem parâmetros
-        return this.http.get<PerfilDto[]>(`${API_CONFIG.apiUrl}/perfil`);
+        return this.http.get<AcessoDto[]>(`${API_CONFIG.apiUrl}/acesso`);
     }
 
-    findPage(page: number, lines:number, nome: string) {
+    findPage(page: number, lines:number) {
         let url = 
-            `${API_CONFIG.apiUrl}/perfil/page?pagina=${page}&linhas=${lines}&nome=${nome}`;
-        return this.http.get<PerfilDto[]>(url);
+            `${API_CONFIG.apiUrl}/acesso/page?pagina=${page}&linhas=${lines}
+              &perfil=${this.perfil}&modulo=${this.modulo}`;
+        return this.http.get<AcessoDto[]>(url);
     }
 
-    insert(obj : PerfilDto) {
-        return this.http.post(`${API_CONFIG.apiUrl}/perfil`, obj,
+    insert(obj : AcessoDto) {
+        return this.http.post(`${API_CONFIG.apiUrl}/acesso`, obj,
             { 
                 observe: 'response', 
                 responseType: 'text'
@@ -39,9 +42,9 @@ export class PerfilService {
         ); 
     }
 
-    update(obj : PerfilDto) {
+    update(obj : AcessoDto) {
         console.log(obj.id);
-        return this.http.put(`${API_CONFIG.apiUrl}/perfil/${obj.id}`, obj,
+        return this.http.put(`${API_CONFIG.apiUrl}/acesso/${obj.id}`, obj,
             { 
                 observe: 'response', 
                 responseType: 'text'
@@ -50,7 +53,7 @@ export class PerfilService {
     }
 
     delete(id : string) {
-        return this.http.delete(`${API_CONFIG.apiUrl}/perfil/${id}`,
+        return this.http.delete(`${API_CONFIG.apiUrl}/acesso/${id}`,
             { 
                 observe: 'response', 
                 responseType: 'text'

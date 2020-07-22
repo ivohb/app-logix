@@ -1,10 +1,10 @@
 <ion-header >
-  <ion-toolbar color="header">
+  <ion-toolbar color="header"> 
     <ion-buttons slot="start">
       <ion-back-button class="button-header" 
         defaultHref="configuracao/:modulo/usuarios"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'USUARIO'|translate}}</ion-title>
+    <ion-title >{{'HEADER_USUARIO'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -27,7 +27,7 @@
     </ion-item>
 
     <ion-item lines="full" class="label">
-      <ion-label position="floating" class="label">{{ 'LABEL_PESSOA' | translate }}</ion-label>
+      <ion-label position="floating">{{ 'LABEL_PESSOA' | translate }}</ion-label>
       <ion-select id="pessoa" formControlName="pessoa" class="caixa">
         <ion-select-option value="F">{{ 'FISICA' | translate }}</ion-select-option>
         <ion-select-option value="J">{{ 'JURIDICA' | translate }}</ion-select-option>
@@ -35,14 +35,14 @@
     </ion-item>
 
     <ion-item lines="full"  class="label">
-      <ion-label position="floating" class="label">{{ 'LABEL_CODIGO' | translate }}</ion-label>
+      <ion-label position="floating" >{{ 'LABEL_CODIGO' | translate }}</ion-label>
       <ion-input id="codigo" formControlName="codigo" type="text" disabled="{{desabilita}}"
         class="caixa" clear-input="ture" spellcheck="false" maxlength="15">
       </ion-input>
     </ion-item>
 
-    <ion-item lines="full"  class="label">
-      <ion-label position="floating" class="label">{{ 'LABEL_SENHA' | translate }}</ion-label>
+    <ion-item lines="full"  class="label"> 
+      <ion-label position="floating">{{ 'LABEL_SENHA' | translate }}</ion-label>
       <ion-input id="senha" formControlName="senha" type="password" disabled="{{desabilita}}"
         class="caixa" clear-input="ture" spellcheck="false" maxlength="15">
       </ion-input>
@@ -98,23 +98,18 @@
       </ion-input>
     </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <ion-button class="button" color="header" (click)="save()" expand="block" [disabled]="fg.invalid"> 
-          <ion-icon name="save"></ion-icon>
-          {{ 'BOTAO_SALVAR' | translate }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-button *ngIf="excluir" color="delete" class="button" (click)="delete()" expand="block" > 
-          <ion-icon name="trash"></ion-icon>
-          {{ 'BOTAO_EXCLUIR' | translate }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
   </form>
 </ion-content>
+
+<ion-footer >
+  <ion-toolbar color="tabela">
+    <ion-buttons slot="end">
+      <ion-button color="salvar"  (click)="save()"  [disabled]="fg.invalid">
+        <ion-icon  name="save" ></ion-icon> {{ 'BOTAO_SALVAR' | translate }}
+      </ion-button>
+      <ion-button color="delete" (click)="delete()" disabled="{{!excluir}}">
+        <ion-icon name="trash" ></ion-icon> {{ 'BOTAO_EXCLUIR' | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

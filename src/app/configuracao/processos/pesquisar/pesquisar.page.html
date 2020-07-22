@@ -2,9 +2,9 @@
   <ion-toolbar color="header">
     <ion-buttons slot="start">
       <ion-back-button class="button-header" 
-        defaultHref="configuracao/:modulo/modulos"></ion-back-button>
+        defaultHref="configuracao/:modulo/processos"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'HEADER_MODULO'|translate}}</ion-title>
+    <ion-title >{{'HEADER_PROCESSO'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -14,6 +14,13 @@
 
     <div id="campos">
 
+      <ion-item lines="full" class="label">
+        <ion-label position="floating">{{ 'LABEL_MODULO' | translate }}</ion-label>
+        <ion-select id="modulo"  [(ngModel)]="modulo" class="caixa">
+          <ion-select-option *ngFor="let p of modulos" [value]="p.id">{{p.titulo}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
       <ion-item>
         <ion-label for="titulo" class="label" position="floating">
           {{ 'LABEL_TITULO' | translate }} 
@@ -25,7 +32,7 @@
       </ion-item>      
 
       <ion-item lines="full" class="label">
-        <ion-label for="situacao" position="floating">
+        <ion-label for="situacao" position="floating" class="label">
             {{ 'LABEL_SITUACAO' | translate }}
         </ion-label>
         <ion-select id="situacao" class="caixa" [(ngModel)]="situacao" placeholder="Select One" >

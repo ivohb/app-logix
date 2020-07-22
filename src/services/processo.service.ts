@@ -9,15 +9,61 @@ import { LocalModulo } from 'src/models/local_modulo';
 @Injectable() //possibilita a injeção do serviço
 export class ProcessoService {
 
+    modulo: number = 0;
+    titulo: string = '';
+    situacao: string = ''; 
+
     constructor(
         public http: HttpClient,
         public storage: StorageService) {
     }
 
-        /*obtem token sem o prefixo Token
-    * cria e pupula obj user e o armazena no localStorage
-    * obtém o código do usuario incluido no token
-    */ 
+    findById(id: string) : Observable<ProcessoDto> {
+        return this.http.get<ProcessoDto>(
+            `${API_CONFIG.apiUrl}/processo/${id}`);
+    }
+
+    findPage(page: number, lines:number) {
+        let url = 
+            `${API_CONFIG.apiUrl}/processo/page?pagina=${page}&linhas=${lines}
+              &modulo=${this.modulo}&titulo=${this.titulo}&situacao=${this.situacao}`;
+        return this.http.get<ProcessoDto[]>(url);
+    }
+
+    findNoAccess(perfil: number, modulo: number) {
+        let url =`${API_CONFIG.apiUrl}/processo/processos?perfil=${perfil}&modulo=${modulo}`;
+        return this.http.get<ProcessoDto[]>(url);
+    }
+
+    insert(obj : ProcessoDto) {
+        return this.http.post(`${API_CONFIG.apiUrl}/processo`, obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    update(obj : ProcessoDto) {
+        console.log(obj.id);
+        return this.http.put(`${API_CONFIG.apiUrl}/processo/${obj.id}`, obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    delete(id : string) {
+        return this.http.delete(`${API_CONFIG.apiUrl}/processo/${id}`,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    //salva o módulo selecionado no local storage
    setModulo(id : string) {
     let module : LocalModulo = { 
         modulo: id
@@ -31,8 +77,13 @@ export class ProcessoService {
             (`${API_CONFIG.apiUrl}/processo/${perfil}/acessos`);
     }
 
-    //A partir do perfil e do módulo, retorna todos os processos que o usuário pode acessar
-    //No back-end, o perfil será obtido a partir do usuário logado
+    //A partir do perfil, retorna todos os processos que o usuário pode acessar
+    findByModulo(modulo : number) : Observable<ProcessoDto[]>  {
+        return this.http.get<ProcessoDto[]>
+            (`${API_CONFIG.apiUrl}/processo/${modulo}/processos`);
+    }
+    
+    //retorna os acessos que o usuário possui no módulo enviado
     findByPerfilAndModulo(modulo: string) : Observable<ProcessoDto[]>  {
         return this.http.get<ProcessoDto[]>
             (`${API_CONFIG.apiUrl}/processo/acessos?modulo=${modulo}`);

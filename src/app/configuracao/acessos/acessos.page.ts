@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ModuloDto } from 'src/models/modulo.dto';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { AcessoDto } from 'src/models/acesso.dto';
 import { LoadingService } from 'src/services/loading.service';
-import { ModuloService } from 'src/services/modulo.service';
 import { AppFunction } from 'src/app/app.function';
 import { NavController } from '@ionic/angular';
+import { AcessoService } from 'src/services/acesso.service';
 
 @Component({
-  selector: 'app-modulos',
-  templateUrl: './modulos.page.html',
-  styleUrls: ['./modulos.page.scss'],
+  selector: 'app-acessos',
+  templateUrl: './acessos.page.html',
+  styleUrls: ['./acessos.page.scss'],
 })
-export class ModulosPage implements OnInit {
+export class AcessosPage implements OnInit {
 
-  modulos : ModuloDto[] = [];  
+  acessos: AcessoDto[] = [];  
   numberPage: number = 0;
   totalPage: number = 0;
   totalElement: number = 0;
@@ -20,26 +20,28 @@ export class ModulosPage implements OnInit {
 
   constructor(  
     private loading: LoadingService,
-    private service: ModuloService,
+    private service: AcessoService,
     private appFunc: AppFunction,
+    private zone: NgZone,
     private navCtrl: NavController
   ) {   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+  }
 
   ionViewWillEnter() {
     this.numberPage = 0;
-    this.modulos = [];
+    this.acessos = [];
     this.loadData();
   }
 
   loadData() {
     this.loading.loadingPresent();
     this.service.findPage(this.numberPage, 10) 
-      .subscribe(response => { //função executa na resposta, se tudo ok
+      .subscribe(response => { 
           this.totalPage = response['totalPages']; 
           this.totalElement = response['totalElements'];
-          this.modulos = this.modulos.concat(response['content']); 
+          this.acessos = this.acessos.concat(response['content']); 
           this.loading.loadingDismiss();
           if (this.totalElement == 0) {
             let texto = this.appFunc.getTexto("DADOS_NAO_ENCONTRADO");
@@ -65,23 +67,47 @@ export class ModulosPage implements OnInit {
       if (this.numberPage < this.totalPage) {
         this.loadData();
       } else {
-        event.target.disabled = true;
+        //event.target.disabled = true;
       }
     }, 500);
   }
 
   find() { 
-    this.navCtrl.navigateBack('/configuracao/modulos/pesquisar');
+    this.navCtrl.navigateBack('/configuracao/acessos/pesquisar');
   }
 
   addObject() {
-    this.navCtrl.navigateBack('/configuracao/modulos/editar/0'); 
+    this.navCtrl.navigateBack('/configuracao/acessos/editar/0'); 
   }
 
-  showObject(id: string) {
-    let url = `/configuracao/modulos/editar/${id}`;
+  //método não utilizado
+  showObject(id: string) { 
+    let url = `/configuracao/acessos/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }
 
+  delete(obj: AcessoDto) {
+    
+    this.loading.loadingPresent();  
+    this.service.delete(obj.id)
+    .subscribe(response => {
+      this.loading.loadingDismiss();
+      let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
+      this.appFunc.presentToast(texto);
+      const index = this.acessos.indexOf( obj );
+      this.acessos.splice(index, 1);
+      console.log( this.acessos );
+      this.refresh();
+    },
+    error => {
+      this.loading.loadingDismiss();
+    });        
+  }
 
+  refresh() {
+    this.zone.run(() => {
+      console.log('force update the screen');
+    });
+  }
+  
 }

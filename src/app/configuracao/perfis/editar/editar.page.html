@@ -2,9 +2,9 @@
   <ion-toolbar color="header">
     <ion-buttons slot="start">
       <ion-back-button class="button-header" 
-        defaultHref="configuracao/:modulo/modulos"></ion-back-button>
+        defaultHref="configuracao/:modulo/perfis"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'HEADER_MODULO'|translate}}</ion-title>
+    <ion-title >{{'HEADER_PERFIL'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -27,23 +27,9 @@
     </ion-item>
 
     <ion-item lines="full"  class="label">
-      <ion-label for="titulo" position="floating">{{ 'LABEL_TITULO' | translate }}</ion-label>
-      <ion-input id="titulo" formControlName="titulo" type="text"
+      <ion-label for="nome" position="floating" >{{ 'LABEL_NOME' | translate }}</ion-label>
+      <ion-input id="nome" formControlName="nome" type="text"
         class="caixa" clear-input="ture" spellcheck="false" maxlength="25">
-      </ion-input>
-    </ion-item>
-
-    <ion-item lines="full" class="label">
-      <ion-label for="path" position="floating">{{ 'LABEL_PATH' | translate }}</ion-label>
-      <ion-input id="path" formControlName="path" type="text" 
-        class="caixa" clear-input="ture" spellcheck="false"  maxlength="25" >
-      </ion-input>
-    </ion-item>
-    
-    <ion-item lines="full" class="label">
-      <ion-label for="icone" position="floating">{{ 'LABEL_ICONE' | translate }}</ion-label>
-      <ion-input id="icone" formControlName="icone" type="text" 
-        class="caixa" clear-input="ture" spellcheck="false" maxlength="50" >
       </ion-input>
     </ion-item>
     

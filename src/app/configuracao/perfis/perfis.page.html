@@ -3,21 +3,29 @@
     <ion-buttons slot="start">
       <ion-back-button class="button-header" defaultHref="configuracao/:modulo"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'HEADER_MODULOS'|translate}}</ion-title>
+    <ion-title >{{'HEADER_PERFIS'|translate}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="button-header" size="small" color="dark" (click)="find()">
-        <ion-icon slot="icon-only" name="search" ></ion-icon>
-      </ion-button>
       <ion-button class="button-header" size="small" color="dark" (click)="addObject()">
         <ion-icon slot="icon-only" name="add-circle-outline" ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-   
-</ion-header >
+ 
+  <ion-toolbar color="dark">
+    <ion-searchbar [(ngModel)]="searchkey" 
+      placeholder="{{'LABEL_NOME'|translate}}" showCancelButton="never">
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button size="small" color="medium"  (click)="find()">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
 
 <ion-content>
-
+ 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -27,12 +35,12 @@
    
   <ion-list >
     <ion-item color="tabela">
-      <ion-col >{{'LABEL_TITULO'|translate}}</ion-col>
+      <ion-col>{{'NOME'|translate}}</ion-col>
       <ion-col size="2">{{'SIT'|translate}}</ion-col>
     </ion-item>
-    <ion-item-sliding *ngFor="let obj of modulos">      
+    <ion-item-sliding *ngFor="let obj of perfis">      
       <ion-item class="tabela" (click)="showObject(obj.id)">
-        <ion-col  > {{ obj.titulo }}</ion-col>
+        <ion-col > {{ obj.nome }} </ion-col>
         <ion-col size="2" > {{ obj.situacao }} </ion-col>
       </ion-item>  
     </ion-item-sliding>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModuloDto } from 'src/models/modulo.dto';
+import { PerfilDto } from 'src/models/perfil.dto';
 import { LoadingService } from 'src/services/loading.service';
-import { ModuloService } from 'src/services/modulo.service';
+import { PerfilService } from 'src/services/perfil.service';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AppFunction } from 'src/app/app.function';
@@ -15,7 +15,7 @@ import { AppFunction } from 'src/app/app.function';
 export class EditarPage implements OnInit {
 
   fg: FormGroup;
-  model: ModuloDto; 
+  model: PerfilDto;
   desabilita : boolean;
   excluir: boolean;
   loader: any;
@@ -25,7 +25,7 @@ export class EditarPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loading: LoadingService,
-    private service: ModuloService,
+    private service: PerfilService,
     private navCtrl: NavController, 
     private appFunc: AppFunction,
     public route: ActivatedRoute 
@@ -39,9 +39,7 @@ export class EditarPage implements OnInit {
   ngOnInit() {
     this.fg = this.formBuilder.group({
       id:       ['', []],
-      titulo:   ['', [Validators.required, Validators.maxLength(25)]],
-      path:     ['', [Validators.required, Validators.maxLength(25)]],
-      icone:    ['', [Validators.required, Validators.maxLength(50)]],
+      nome:     ['', [Validators.required, Validators.maxLength(25)]],
       situacao: ['', [Validators.required, Validators.maxLength(1)]]
     })
     
@@ -67,10 +65,9 @@ export class EditarPage implements OnInit {
   }
 
   setValues() {
+    console.log(this.model);
     this.fg.controls.id.setValue(this.model.id);
-    this.fg.controls.titulo.setValue(this.model.titulo);
-    this.fg.controls.path.setValue(this.model.path);
-    this.fg.controls.icone.setValue(this.model.icone);
+    this.fg.controls.nome.setValue(this.model.nome);
     this.fg.controls.situacao.setValue(this.model.situacao);   
     if (this.fg.controls.situacao.value == 'I') {
       this.excluir = true;

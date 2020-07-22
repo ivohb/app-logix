@@ -4,7 +4,7 @@
       <ion-back-button class="button-header" 
         defaultHref="configuracao/:modulo/usuarios"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'USUARIO'|translate}}</ion-title>
+    <ion-title >{{'HEADER_USUARIO'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -45,7 +45,7 @@
       </ion-item>      
 
       <ion-item lines="full" class="label">
-        <ion-label for="pessoa" position="floating" class="label">
+        <ion-label for="pessoa" position="floating" >
             {{ 'LABEL_PESSOA' | translate }}
         </ion-label>
         <ion-select id="pessoa" class="caixa" [(ngModel)]="pessoa" placeholder="Select One" >

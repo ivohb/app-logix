@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button class="button-header" defaultHref="configuracao/:modulo"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'HEADER_MODULOS'|translate}}</ion-title>
+    <ion-title >{{'HEADER_PROCESSOS'|translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-button class="button-header" size="small" color="dark" (click)="find()">
         <ion-icon slot="icon-only" name="search" ></ion-icon>
@@ -15,7 +15,7 @@
   </ion-toolbar>
    
 </ion-header >
-
+ 
 <ion-content>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
@@ -27,11 +27,13 @@
    
   <ion-list >
     <ion-item color="tabela">
-      <ion-col >{{'LABEL_TITULO'|translate}}</ion-col>
+      <ion-col >{{'LABEL_MODULO'|translate}}</ion-col>
+      <ion-col >{{'LABEL_PROCESSO'|translate}}</ion-col>
       <ion-col size="2">{{'SIT'|translate}}</ion-col>
     </ion-item>
-    <ion-item-sliding *ngFor="let obj of modulos">      
+    <ion-item-sliding *ngFor="let obj of processos">      
       <ion-item class="tabela" (click)="showObject(obj.id)">
+        <ion-col  > {{ obj.descModulo }}</ion-col>
         <ion-col  > {{ obj.titulo }}</ion-col>
         <ion-col size="2" > {{ obj.situacao }} </ion-col>
       </ion-item>  

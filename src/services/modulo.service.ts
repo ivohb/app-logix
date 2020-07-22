@@ -16,6 +16,11 @@ export class ModuloService {
         public storage: StorageService) {
     }
 
+    findAll() : Observable<ModuloDto[]> {
+        //chaada do método get da API sem parâmetros
+        return this.http.get<ModuloDto[]>(`${API_CONFIG.apiUrl}/modulo`);
+    }
+
     findById(id: string) : Observable<ModuloDto> {
         return this.http.get<ModuloDto>(
             `${API_CONFIG.apiUrl}/modulo/${id}`);

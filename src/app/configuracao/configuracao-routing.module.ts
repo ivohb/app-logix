@@ -15,7 +15,20 @@ const routes: Routes = [
   {
     path: 'modulos',
     loadChildren: () => import('./modulos/modulos.module').then( m => m.ModulosPageModule)
+  },
+  {
+    path: 'processos',
+    loadChildren: () => import('./processos/processos.module').then( m => m.ProcessosPageModule)
+  },
+  {
+    path: 'perfis',
+    loadChildren: () => import('./perfis/perfis.module').then( m => m.PerfisPageModule)
+  },
+  {
+    path: 'acessos',
+    loadChildren: () => import('./acessos/acessos.module').then( m => m.AcessosPageModule)
   }
+
 ];
 
 @NgModule({

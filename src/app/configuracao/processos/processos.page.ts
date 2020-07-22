@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ModuloDto } from 'src/models/modulo.dto';
+import { ProcessoDto } from 'src/models/processo.dto';
 import { LoadingService } from 'src/services/loading.service';
-import { ModuloService } from 'src/services/modulo.service';
 import { AppFunction } from 'src/app/app.function';
 import { NavController } from '@ionic/angular';
+import { ProcessoService } from 'src/services/processo.service';
 
 @Component({
-  selector: 'app-modulos',
-  templateUrl: './modulos.page.html',
-  styleUrls: ['./modulos.page.scss'],
+  selector: 'app-processos',
+  templateUrl: './processos.page.html',
+  styleUrls: ['./processos.page.scss'],
 })
-export class ModulosPage implements OnInit {
+export class ProcessosPage implements OnInit {
 
-  modulos : ModuloDto[] = [];  
+  processos : ProcessoDto[] = [];  
   numberPage: number = 0;
   totalPage: number = 0;
   totalElement: number = 0;
@@ -20,7 +20,7 @@ export class ModulosPage implements OnInit {
 
   constructor(  
     private loading: LoadingService,
-    private service: ModuloService,
+    private service: ProcessoService,
     private appFunc: AppFunction,
     private navCtrl: NavController
   ) {   }
@@ -29,7 +29,7 @@ export class ModulosPage implements OnInit {
 
   ionViewWillEnter() {
     this.numberPage = 0;
-    this.modulos = [];
+    this.processos = [];
     this.loadData();
   }
 
@@ -39,7 +39,7 @@ export class ModulosPage implements OnInit {
       .subscribe(response => { //função executa na resposta, se tudo ok
           this.totalPage = response['totalPages']; 
           this.totalElement = response['totalElements'];
-          this.modulos = this.modulos.concat(response['content']); 
+          this.processos = this.processos.concat(response['content']); 
           this.loading.loadingDismiss();
           if (this.totalElement == 0) {
             let texto = this.appFunc.getTexto("DADOS_NAO_ENCONTRADO");
@@ -71,17 +71,16 @@ export class ModulosPage implements OnInit {
   }
 
   find() { 
-    this.navCtrl.navigateBack('/configuracao/modulos/pesquisar');
+    this.navCtrl.navigateBack('/configuracao/processos/pesquisar');
   }
 
   addObject() {
-    this.navCtrl.navigateBack('/configuracao/modulos/editar/0'); 
+    this.navCtrl.navigateBack('/configuracao/processos/editar/0'); 
   }
 
   showObject(id: string) {
-    let url = `/configuracao/modulos/editar/${id}`;
+    let url = `/configuracao/processos/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }
-
 
 }

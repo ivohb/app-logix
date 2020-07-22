@@ -26,13 +26,21 @@ const routes: Routes = [
   {
     path: 'senha',
     loadChildren: () => import('./senha/senha.module').then( m => m.SenhaPageModule)
-  },
+  },  
   {
     path: 'configuracao/:modulo',
     loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
   },   
   {
-    path: 'configuracao/:modulo/modulos',
+    path: 'configuracao/acessos/editar/:id',
+    loadChildren: () => import('./configuracao/acessos/editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
+    path: 'configuracao/acessos/pesquisar',
+    loadChildren: () => import('./configuracao/acessos/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
+  },  
+  {
+    path: 'configuracao/:modulo/modulos', 
     loadChildren: () => import('./configuracao/modulos/modulos.module').then( m => m.ModulosPageModule)
   },
   {
@@ -44,12 +52,32 @@ const routes: Routes = [
     loadChildren: () => import('./configuracao/modulos/editar/editar.module').then( m => m.EditarPageModule)
   },
   {
+    path: 'configuracao/:modulo/perfis',
+    loadChildren: () => import('./configuracao/perfis/perfis.module').then( m => m.PerfisPageModule)
+  },
+  {
+    path: 'configuracao/perfis/editar/:id',
+    loadChildren: () => import('./configuracao/perfis/editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
+    path: 'configuracao/:modulo/processos',
+    loadChildren: () => import('./configuracao/processos/processos.module').then( m => m.ProcessosPageModule)
+  },
+  {
+    path: 'configuracao/processos/pesquisar',
+    loadChildren: () => import('./configuracao/processos/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
+  },
+  {
+    path: 'configuracao/processos/editar/:id',
+    loadChildren: () => import('./configuracao/processos/editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
     path: 'configuracao/:modulo/usuarios',
     loadChildren: () => import('./configuracao/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
   {
     path: 'configuracao/usuarios/editar/:id',
-    loadChildren: () => import('./configuracao/usuarios/usuario/usuario.module').then( m => m.UsuarioPageModule)
+    loadChildren: () => import('./configuracao/usuarios/editar/editar.module').then( m => m.EditarPageModule)
   },
   {
     path: 'configuracao/usuarios/pesquisar',

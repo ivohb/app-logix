@@ -18,9 +18,9 @@ export class UsuariosPage implements OnInit {
   totalPage: number = 0;
   totalElement: number = 0;
   
-  constructor(  
+  constructor( 
     private loading: LoadingService,
-    private usuarioService: UsuarioService,
+    private service: UsuarioService,
     private appFunc: AppFunction,
     private navCtrl: NavController
   ) {   }
@@ -31,7 +31,7 @@ export class UsuariosPage implements OnInit {
 
   //ao carregar a pagina
   ionViewWillEnter() {
-    console.log(this.usuarioService.nome);
+    console.log(this.service.nome);
     this.numberPage = 0;
     this.usuarios = [];
     this.loadData();
@@ -40,7 +40,7 @@ export class UsuariosPage implements OnInit {
   loadData() {
     this.loading.loadingPresent();
     //chamada assincrona da função
-    this.usuarioService.findPage(this.numberPage, 10) 
+    this.service.findPage(this.numberPage, 10) 
       .subscribe(response => { //função executa na resposta, se tudo ok
           //caso queira carregar as imaens do amazon, chamar a funcão 
           //loadImageUrls(start, end);

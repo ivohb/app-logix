@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuarioDto } from 'src/models/usuario.dto';
-import { PerfilDto } from 'src/models/perfil.dto';
-import { PerfilService } from 'src/services/perfil.service';
-import { UsuarioService } from 'src/services/usuario.service';
 import { LoadingService } from 'src/services/loading.service';
 import { NavController } from '@ionic/angular';
-import { AppFunction } from 'src/app/app.function';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { AppFunction } from 'src/app/app.function';
+import { ProcessoDto } from 'src/models/processo.dto';
+import { ProcessoService } from 'src/services/processo.service';
+import { ModuloDto } from 'src/models/modulo.dto';
+import { ModuloService } from 'src/services/modulo.service';
 
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.page.html',
-  styleUrls: ['./usuario.page.scss'],
+  selector: 'app-editar',
+  templateUrl: './editar.page.html',
+  styleUrls: ['./editar.page.scss'],
 })
-export class UsuarioPage implements OnInit {
+export class EditarPage implements OnInit {
 
   fg: FormGroup;
-  model: UsuarioDto;
-  perfis: PerfilDto[] = [];
+  model: ProcessoDto;
   desabilita : boolean;
   excluir: boolean;
   loader: any;
   id: string;
- 
+
+  modulos: ModuloDto[] = [];
+
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private loading: LoadingService,
-    private perfilService: PerfilService,
-    private service: UsuarioService,
+    private service: ProcessoService,
+    private moduloService: ModuloService,
     private navCtrl: NavController, 
     private appFunc: AppFunction,
     public route: ActivatedRoute 
@@ -39,34 +40,29 @@ export class UsuarioPage implements OnInit {
      })
   }
 
-  //ao criar a página
   ngOnInit() {
     this.fg = this.formBuilder.group({
-      id:       ['', []],  
-      pessoa:   ['', [Validators.required]], 
-      codigo:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      senha:    ['', []],
-      nome:     ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      email:    ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-      cpfCnpj:  ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
-      perfil:   ['', [Validators.required]],
-      telefone: ['', []],
-      celular:  ['', []],  
-      situacao: ['', [Validators.required]], 
-      codigoErp:['', []]
+      id:       ['', []],
+      titulo:   ['', [Validators.required, Validators.maxLength(25)]],
+      path:     ['', [Validators.required, Validators.maxLength(25)]],
+      icone:    ['', [Validators.required, Validators.maxLength(50)]],
+      situacao: ['', [Validators.required, Validators.maxLength(1)]],
+      modulo:   ['', [Validators.required]]
     })
+    this.findAllModulo();
   }
 
-  //Cada vez que a página for aberta
-  ionViewWillEnter() {
-    this.perfilService.findAll()
+  findAllModulo() {
+    this.moduloService.findAll()
     .subscribe(response => {
-      this.perfis = response;
+      this.modulos = response;
     },
     error => {
       console.log(error);
     });
+  }
 
+  ionViewWillEnter() {
     if (this.id == '0') {
       this.fg.controls.id.setValue(this.id);
       this.fg.controls.situacao.setValue('I');
@@ -84,27 +80,19 @@ export class UsuarioPage implements OnInit {
     }    
   
   }
- 
-    //atribui valores aos campos
-    setValues() {
-      this.fg.controls.id.setValue(this.model.id);
-      this.fg.controls.pessoa.setValue(this.model.pessoa);
-      this.fg.controls.codigo.setValue(this.model.codigo);
-      this.fg.controls.nome.setValue(this.model.nome);
-      this.fg.controls.email.setValue(this.model.email);
-      this.fg.controls.cpfCnpj.setValue(this.model.cpfCnpj);
-      this.fg.controls.perfil.setValue(this.model.perfil);
-      this.fg.controls.telefone.setValue(this.model.telefone);
-      this.fg.controls.celular.setValue(this.model.celular);
-      this.fg.controls.situacao.setValue(this.model.situacao);
-      this.fg.controls.codigoErp.setValue(this.model.codigoErp);
-     
-      if (this.fg.controls.situacao.value == 'I') {
-        this.excluir = true;
-      }
-  
+
+  setValues() {
+    this.fg.controls.id.setValue(this.model.id);
+    this.fg.controls.titulo.setValue(this.model.titulo);
+    this.fg.controls.path.setValue(this.model.path);
+    this.fg.controls.icone.setValue(this.model.icone);
+    this.fg.controls.situacao.setValue(this.model.situacao);   
+    this.fg.controls.modulo.setValue(this.model.modulo);   
+    if (this.fg.controls.situacao.value == 'I') {
+      this.excluir = true;
     }
-  
+  }
+
   save() {      
     if (this.fg.controls.id.value == 0) {
       this.insert();
@@ -130,7 +118,7 @@ export class UsuarioPage implements OnInit {
       this.loading.loadingDismiss();
      });
   }      
-  
+
   findIdByUrl(url: string) {
     for (let i = url.length; i >=0;  i--) {
       let dig = url.substring(i,i+1)

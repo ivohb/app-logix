@@ -12,7 +12,7 @@ export class PesquisarPage implements OnInit {
   titulo: string = '';
   situacao: string = '';
 
-  constructor(
+  constructor( 
     private navCtrl: NavController, 
     private moduloService: ModuloService, 
 

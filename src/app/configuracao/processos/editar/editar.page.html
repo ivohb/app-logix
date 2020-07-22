@@ -2,9 +2,9 @@
   <ion-toolbar color="header">
     <ion-buttons slot="start">
       <ion-back-button class="button-header" 
-        defaultHref="configuracao/:modulo/modulos"></ion-back-button>
+        defaultHref="configuracao/:modulo/processos"></ion-back-button>
     </ion-buttons>
-    <ion-title >{{'HEADER_MODULO'|translate}}</ion-title>
+    <ion-title >{{'HEADER_PROCESSO'|translate}}</ion-title>
   </ion-toolbar>  
 </ion-header>
 
@@ -26,8 +26,15 @@
       </ion-select>
     </ion-item>
 
+    <ion-item lines="full" class="label">
+      <ion-label for="modulo" position="floating" class="label">{{ 'LABEL_MODULO' | translate }}</ion-label>
+      <ion-select id="modulo"  formControlName="modulo" class="caixa">
+        <ion-select-option *ngFor="let p of modulos" [value]="p.id">{{p.titulo}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item lines="full"  class="label">
-      <ion-label for="titulo" position="floating">{{ 'LABEL_TITULO' | translate }}</ion-label>
+      <ion-label for="titulo" position="floating" class="label">{{ 'LABEL_TITULO' | translate }}</ion-label>
       <ion-input id="titulo" formControlName="titulo" type="text"
         class="caixa" clear-input="ture" spellcheck="false" maxlength="25">
       </ion-input>

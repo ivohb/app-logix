@@ -24,6 +24,7 @@ import { AppFunction } from './app.function';
 import { LoadingService } from 'src/services/loading.service';
 import { PerfilService } from 'src/services/perfil.service';
 import { ModuloService } from 'src/services/modulo.service';
+import { AcessoService } from 'src/services/acesso.service';
 
 // caminho do arquivos de idiomas
 export function HttpLoaderFactory(http: HttpClient) {
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProcessoService,
     ModuloService,
     PerfilService,
+    AcessoService,
     LoadingService
   ],
   bootstrap: [AppComponent]

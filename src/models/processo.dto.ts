@@ -1,6 +1,9 @@
 export interface ProcessoDto {
     id : string;
-    nome : string;
-    pagina : string;
-    imagem : string;
+    titulo : string;
+    path : string;
+    icone : string; 
+    situacao : string; 
+    modulo: number;
+    descModulo: string;
 }
