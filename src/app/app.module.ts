@@ -25,6 +25,7 @@ import { LoadingService } from 'src/services/loading.service';
 import { PerfilService } from 'src/services/perfil.service';
 import { ModuloService } from 'src/services/modulo.service';
 import { AcessoService } from 'src/services/acesso.service';
+import { EmpresaService } from 'src/services/empresa.service';
 
 // caminho do arquivos de idiomas
 export function HttpLoaderFactory(http: HttpClient) {
@@ -62,6 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ErrorInterceptorProvider, //na volta da api, executa essa.
     AppFunction,
     StorageService,
+    EmpresaService,
     UsuarioService,
     ImageUtilService,
     AuthService,

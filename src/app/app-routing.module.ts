@@ -83,10 +83,17 @@ const routes: Routes = [
     path: 'configuracao/usuarios/pesquisar',
     loadChildren: () => import('./configuracao/usuarios/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
   },
+
   {
     path: 'edi-cliente/:modulo',
     loadChildren: () => import('./edi-cliente/edi-cliente.module').then( m => m.EdiClientePageModule)
   },
+  {
+    path: 'edi-cliente/:modulo/edi-cliente-preparar',
+    loadChildren: () => import('./edi-cliente/preparacao/preparacao.module').then( m => m.PreparacaoPageModule)
+  },
+
+
   {
     path: 'edi-kanban/:modulo',
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)

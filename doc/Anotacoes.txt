@@ -2,7 +2,7 @@ executar o back-end: java -jar aprovardocum-0.0.1-SNAPSHOT.jar
 criar nova página:  
 ionic g page <nome> --spec=false
 ionic g page [subpasta/]<nome> --spec=false
-ionic g page configuracao/acessos --spec=false
+ionic g page edi-cliente/preparacao --spec=false
 
 
 sites curso:

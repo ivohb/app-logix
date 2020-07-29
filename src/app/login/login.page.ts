@@ -9,6 +9,8 @@ import { StorageService } from 'src/services/storage.service';
 import { AppFunction } from '../app.function';
 import { ModuloService } from 'src/services/modulo.service';
 import { ModuloDto } from 'src/models/modulo.dto';
+import { EmpresaDto } from 'src/models/empresa.dto';
+import { EmpresaService } from 'src/services/empresa.service';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +21,11 @@ export class LoginPage implements OnInit {
 
   login : LoginDto = {
     codigo: "",
-    senha: ""
+    senha: "",
+    empresa: ""
   };
-  
+
+  empresas: EmpresaDto[];
   processos: ProcessoDto[]; 
   modulos: ModuloDto[];
 
@@ -31,6 +35,7 @@ export class LoginPage implements OnInit {
     private auth: AuthService,
     private proc: ProcessoService,
     private modulo: ModuloService,
+    private empresa: EmpresaService,
     private rota: Router,
     public events: Events,
     private navCtrl: NavController,
@@ -40,8 +45,24 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.storage.setLocalUser(null);
+    this.findCompanyAuth();
   }
 
+  findCompanyAuth() {
+    this.empresa.findCompanyAuth()
+    .subscribe(response => {
+      this.empresas = response;
+      console.log(this.empresas);
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  autorizar() {
+
+  }
+  
   documentacao() {
     this.navCtrl.navigateBack('/documentacao');
 }

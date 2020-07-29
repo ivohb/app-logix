@@ -8,47 +8,30 @@
 </ion-header>
  
 <ion-content ion-padding >
+      
   <div class="page-content" >
-    <ion-card class="imagem150">
+
+    <ion-card class="imagem150"> 
       <img src="/assets/img/edi-cliente.png" alt=""/>
       <ion-card-header> 
-        <ion-card-title class="titulo">{{'OBJETIVO'|translate}}</ion-card-title>
+        <ion-button class="opcoes " (click)="ajuda()" fill="clear"> 
+          <ion-icon  name="help-circle"></ion-icon>
+          {{'OPCOES'|translate}}
+        </ion-button>
       </ion-card-header>
     </ion-card>
   
-    <ion-card-content class="help">
-      <div class="text-ident">
-        O objetivo desse módulo é permitir aos clientes da Ethos a elaboração de listas de programação 
-        de compra para um determinado produto, listas essas que, posteriormente, serão integradas com 
-        a carteira de pedidos do sistema ERP da Ethos. Suas funcionalidades são:
-      </div>
-      <div class="bold100">
-        - Iniciar:
-      </div>
-      <div class="text-ident">
-        Permite ao cliente iniciar uma nova lista de programação para um determinado produto.
-      </div>
-      <div class="bold100">
-        - Consultar:
-      </div>
-      <div class="text-ident">
-        Permite ao cliente consultar uma lista de programação previamente iniciada, para visualização 
-        e/ou alteração nos dados.
-      </div>
-      <div class="bold100">
-        - Integrar:
-      </div>
-      <div class="text-ident">
-        processa a lista de programação previamente selecionada, enviando seus dados diretamente para 
-        a carteira de pedidos do ERP. <br/>        
-      </div>
-      <div class="text-ident">
-        <b>Obs:</b> para a integração da lista de programação com a carteira de pedidos do ERP, é 
-        necessário que, no ERP, haja um pedido aberto para o produto. Se não houver, o usuário Ethos 
-        deverá providenciar a inclusão de um pedido (via programa padrão do ERP) para o produto, e 
-        depois executar  a integração da lista novamente.
-      </div>
-    </ion-card-content>
-  
+    <ion-list>
+      <ion-buttons auto-hide="false" *ngFor="let p of processos">
+        <ion-item [routerDirection]="'root'" [routerLink]="p.path">
+          <img [src]="p.icone"/>
+          <ion-label class="padding-left-10"> 
+            {{p.titulo}}
+          </ion-label>
+        </ion-item>
+      </ion-buttons>
+    </ion-list>
+
   </div>
+
 </ion-content>

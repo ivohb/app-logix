@@ -29,7 +29,7 @@
     <ion-item lines="full" class="label">
       <ion-label for="modulo" position="floating" class="label">{{ 'LABEL_MODULO' | translate }}</ion-label>
       <ion-select id="modulo"  formControlName="modulo" class="caixa">
-        <ion-select-option *ngFor="let p of modulos" [value]="p.id">{{p.titulo}}</ion-select-option>
+        <ion-select-option *ngFor="let m of modulos" [value]="m.id">{{m.titulo}}</ion-select-option>
       </ion-select>
     </ion-item>
 

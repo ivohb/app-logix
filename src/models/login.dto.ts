@@ -1,4 +1,5 @@
 export interface LoginDto {
-    codigo : string;
-    senha : string;
+    codigo: string;
+    senha: string;
+    empresa: string;
 }

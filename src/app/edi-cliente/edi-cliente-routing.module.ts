@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EdiClientePage
+  },
+  {
+    path: 'preparacao',
+    loadChildren: () => import('./preparacao/preparacao.module').then( m => m.PreparacaoPageModule)
   }
 ];
 

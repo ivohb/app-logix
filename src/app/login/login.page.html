@@ -8,14 +8,14 @@
 
   <div class="login-content">
 
-    <ion-card class="imagem200">
+    <ion-card class="imagem120">
       <img src="/assets/img/login.png" alt=""/>
       <ion-card-header>
         <ion-card-title class="titulo">
           {{ 'IDENTIFICACAO' | translate }}
         </ion-card-title>
       </ion-card-header>
-    </ion-card>
+    </ion-card> 
     
     <div class="dados">
 
@@ -38,13 +38,27 @@
         </ion-input>
       </ion-item>
   
+      <ion-item  >
+        <ion-label for="empresa"  class="label" position="floating" >
+          {{ 'LABEL_EMPRESA' | translate }}
+        </ion-label>
+        <ion-select id="empresa"  [(ngModel)]="login.empresa" name="empresa" >
+          <ion-select-option *ngFor="let e of empresas" [value]="e.id">{{e.nome}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
       <ion-list >    
 
         <ion-button class="button" (click)="entrar()" expand="block"> 
           <ion-icon slot="start" name="log-in"></ion-icon> 
           {{ 'BOTAO_ENTRAR' | translate }}
         </ion-button>
-    
+
+        <ion-button class="ion-text-capitalize link" (click)="autorizar()" fill="clear"> 
+          <ion-icon slot="start" color="medium" name="book"></ion-icon>
+          {{ 'AUTORIZAR_EMPRESA' | translate }}
+        </ion-button><br/>
+
         <ion-button class="ion-text-capitalize link" (click)="documentacao()" fill="clear"> 
           <ion-icon slot="start" color="medium" name="book"></ion-icon>
           {{ 'API_DOCUMENTACAO' | translate }}
