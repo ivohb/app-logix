@@ -26,6 +26,9 @@ import { PerfilService } from 'src/services/perfil.service';
 import { ModuloService } from 'src/services/modulo.service';
 import { AcessoService } from 'src/services/acesso.service';
 import { EmpresaService } from 'src/services/empresa.service';
+import { AppFormat } from './app.format';
+import { EdiClienteService } from 'src/services/edi.cliente.service';
+import { ClienteItemService } from 'src/services/cliente.item.service';
 
 // caminho do arquivos de idiomas
 export function HttpLoaderFactory(http: HttpClient) {
@@ -62,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthInterceptorProvider, //na ida p/ api, executa essa instância
     ErrorInterceptorProvider, //na volta da api, executa essa.
     AppFunction,
+    AppFormat,
     StorageService,
     EmpresaService,
     UsuarioService,
@@ -71,7 +75,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModuloService,
     PerfilService,
     AcessoService,
-    LoadingService
+    LoadingService,
+    EdiClienteService,
+    ClienteItemService
+
   ],
   bootstrap: [AppComponent]
 })

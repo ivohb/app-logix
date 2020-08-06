@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
   }
 
   autorizar() {
-
+    this.navCtrl.navigateBack('/autorizacao');
   }
   
   documentacao() {
@@ -77,16 +77,22 @@ export class LoginPage implements OnInit {
 
     if (this.login.codigo.length == 0 ) {
       let texto = this.appFunc.getTexto("CAMPO_OBRIGATORIO")+": ";
-      texto+=this.appFunc.getTexto("CODIGO");
+      texto+=this.appFunc.getTexto("LABEL_CODIGO");
       msg=msg+texto+"<br>"
     } 
 
     if (this.login.senha.length == 0 ) {
       let texto = this.appFunc.getTexto("CAMPO_OBRIGATORIO")+": ";
-      texto+=this.appFunc.getTexto("SENHA");
+      texto+=this.appFunc.getTexto("LABEL_SENHA");
       msg=msg+texto+"<br>"
     } 
-    
+
+    if (this.login.empresa.length == 0 ) {
+      let texto = this.appFunc.getTexto("CAMPO_OBRIGATORIO")+": ";
+      texto+=this.appFunc.getTexto("LABEL_EMPRESA");
+      msg=msg+texto+"<br>"
+    } 
+
     if (msg.length > 0) {
       this.appFunc.mensagem(this.appFunc.getTexto('ERRO_VALIDACAO'), msg);
       return;
@@ -95,10 +101,10 @@ export class LoginPage implements OnInit {
     this.auth.autenticacao(this.login)
       .subscribe(response => {
         this.auth.login(
-          response.headers.get('Authorization'), response.headers.get('Profile'));
-          let role =  response.headers.get('Profile');
-          //this.leProcessos(role);
-          this.modulo.findByPerfil(role)
+          response.headers.get('Authorization'), 
+            response.headers.get('Profile'),  response.headers.get('Empresa'));
+          let perfil =  response.headers.get('Profile');
+          this.modulo.findByPerfil(perfil)
           .subscribe(
             response => { 
               this.modulos = response; 
@@ -110,20 +116,6 @@ export class LoginPage implements OnInit {
       error => {
         //O tratamento do erro está sendo feita pelo interceptador.
       });     
-  }
-
-  leProcessos(perfil: string) {
-    this.proc.findByPerfil(perfil)
-    .subscribe(
-      response => { 
-        this.processos = response; 
-        console.log(this.processos);
-      },
-      error => { 
-        this.processos = []; 
-        console.log('procesos não encontrados')
-      }); 
-
   }
 
 }

@@ -91,7 +91,7 @@ export class UsuarioService {
             }
         ); 
     }
-
+ 
     //param: imaegem no formato base64
     uploadPicture(picture) {
         //converte imagem para blob

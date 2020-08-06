@@ -41,7 +41,6 @@ export class EdiClientePage implements OnInit {
     .subscribe(
       response => { 
         this.processos = response; 
-        console.log(this.processos);
       },
       error => { 
         this.processos = [];
@@ -50,10 +49,8 @@ export class EdiClientePage implements OnInit {
   }
 
   ajuda() {
-    let texto = this.appFunc.getTexto("AJUDA_EDIC_INICIAR");
+    let texto = this.appFunc.getTexto("AJUDA_EDIC_PREPARAR");
     let msg = texto+'<br>'+'<br>';
-    texto = this.appFunc.getTexto("AJUDA_EDIC_CONSULTAR");
-    msg = msg+texto+'<br>'+'<br>';
     texto = texto = this.appFunc.getTexto("AJUDA_EDIC_INTEGRAR");
     msg = msg+texto+'<br>'+'<br>';
     msg = '<b><i>'+msg+'</b></i>';

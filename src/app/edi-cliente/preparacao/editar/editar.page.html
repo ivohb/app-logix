@@ -1,0 +1,54 @@
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" 
+        defaultHref="edi-cliente/:modulo/edi-cliente-preparar"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'HEADER_PREPARACAO_EDI'|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="salvar"  (click)="save()"  [disabled]="fg.invalid">
+        <ion-icon  name="save" ></ion-icon> 
+      </ion-button>
+      <ion-button color="delete" (click)="delete()" disabled="{{!excluir}}">
+        <ion-icon name="trash" ></ion-icon> 
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+
+  <form [formGroup]="fg" >
+
+    <ion-item lines="full"  class="label">
+      <ion-label for="pedido" position="floating" class="label">{{ 'LABEL_PEDIDO' | translate }}</ion-label>
+      <ion-input id="pedido" formControlName="pedido" type="text"
+        class="caixa" clear-input="ture" spellcheck="false" maxlength="30">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label for="produto" position="floating" class="label">{{ 'LABEL_PRODUTO' | translate }}</ion-label>
+      <ion-select id="produto"  formControlName="produto" class="caixa">
+        <ion-select-option *ngFor="let obj of popup" [value]="obj.itemCliente">{{obj.descricao}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </form>
+
+  <ion-list >
+    <ion-item color="tabela">
+      <ion-col >{{'CABEC_ENTREGA'|translate}}</ion-col>
+      <ion-col >{{'CABEC_QUANTIDADE'|translate}}</ion-col>
+      <ion-col size="2">{{'CABEC_CONFIRMADA'|translate}}</ion-col>
+    </ion-item>
+    <ion-item-sliding *ngFor="let obj of lista">      
+      <ion-item class="tabela" (click)="showObject(obj.id)">
+        <ion-col  > {{ obj.pedido }}</ion-col>
+        <ion-col  > {{ obj.produto }}</ion-col>
+        <ion-col size="2" > {{ obj.situacao }} </ion-col>
+      </ion-item>  
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

@@ -13,9 +13,24 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-   
+  
 </ion-header>
 
 <ion-content>
+
+  <ion-list >
+    <ion-item color="tabela">
+      <ion-col >{{'CABEC_PEDIDO'|translate}}</ion-col>
+      <ion-col >{{'CABEC_PRODUTO'|translate}}</ion-col>
+      <ion-col size="2">{{'CABEC_SITUACAO'|translate}}</ion-col>
+    </ion-item>
+    <ion-item-sliding *ngFor="let obj of lista">      
+      <ion-item class="tabela" (click)="showObject(obj.id)">
+        <ion-col  > {{ obj.pedido }}</ion-col>
+        <ion-col  > {{ obj.produto }}</ion-col>
+        <ion-col size="2" > {{ obj.situacao }} </ion-col>
+      </ion-item>  
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>

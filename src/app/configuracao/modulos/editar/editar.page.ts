@@ -18,7 +18,7 @@ export class EditarPage implements OnInit {
   model: ModuloDto; 
   desabilita : boolean;
   excluir: boolean;
-  loader: any;
+  loader: any; 
   id: string;
 
 
@@ -102,7 +102,7 @@ export class EditarPage implements OnInit {
       this.loading.loadingDismiss();
      });
   }      
-
+ 
   findIdByUrl(url: string) {
     for (let i = url.length; i >=0;  i--) {
       let dig = url.substring(i,i+1)

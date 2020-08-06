@@ -16,6 +16,14 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'autorizacao',
+    loadChildren: () => import('./autorizacao/autorizacao.module').then( m => m.AutorizacaoPageModule)
+  },
+  {
+    path: 'documentacao',
+    loadChildren: () => import('./documentacao/documentacao.module').then( m => m.DocumentacaoPageModule)
+  },
+  {
     path: 'forgot',
     loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
   },
@@ -28,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./senha/senha.module').then( m => m.SenhaPageModule)
   },  
   {
-    path: 'configuracao/:modulo',
+    path: 'configuracao/:modulo', 
     loadChildren: () => import('./configuracao/configuracao.module').then( m => m.ConfiguracaoPageModule)
   },   
   {
@@ -92,6 +100,14 @@ const routes: Routes = [
     path: 'edi-cliente/:modulo/edi-cliente-preparar',
     loadChildren: () => import('./edi-cliente/preparacao/preparacao.module').then( m => m.PreparacaoPageModule)
   },
+  {
+    path: 'edi-cliente/preparacao/pesquisar',
+    loadChildren: () => import('./edi-cliente/preparacao/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
+  },
+  {
+    path: 'edi-cliente/preparacao/editar/:id',
+    loadChildren: () => import('./edi-cliente/preparacao/editar/editar.module').then( m => m.EditarPageModule)
+  },
 
 
   {
@@ -99,13 +115,14 @@ const routes: Routes = [
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)
   },
   {
-    path: 'documentacao',
-    loadChildren: () => import('./documentacao/documentacao.module').then( m => m.DocumentacaoPageModule)
-  },
-  {
     path: 'inventario/:modulo',
     loadChildren: () => import('./inventario/inventario.module').then( m => m.InventarioPageModule)
   },
+  {
+    path: 'autorizacao',
+    loadChildren: () => import('./autorizacao/autorizacao.module').then( m => m.AutorizacaoPageModule)
+  },
+
 
 
 ];

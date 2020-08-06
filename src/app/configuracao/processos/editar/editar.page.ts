@@ -52,7 +52,7 @@ export class EditarPage implements OnInit {
     this.findAllModulo();
   }
 
-  findAllModulo() {
+  findAllModulo() { 
     this.moduloService.findAll()
     .subscribe(response => {
       this.modulos = response;

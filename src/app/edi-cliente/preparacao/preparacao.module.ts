@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     PreparacaoPageRoutingModule,
     TranslateModule.forChild()
   ],
-  declarations: [PreparacaoPage]
+  declarations: [PreparacaoPage],
+
 })
 export class PreparacaoPageModule { }

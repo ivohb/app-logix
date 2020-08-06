@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: PreparacaoPage
+  },
+  {
+    path: 'editar',
+    loadChildren: () => import('./editar/editar.module').then( m => m.EditarPageModule)
+  },
+  {
+    path: 'pesquisar',
+    loadChildren: () => import('./pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
   }
 ];
 

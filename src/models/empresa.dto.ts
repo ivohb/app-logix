@@ -1,4 +1,7 @@
 export interface EmpresaDto {
-    id : string;
-    nome : string;
+    id: string;
+    codinome: string;
+    nome: string;
+    cnpj: string;
+    chave: string;
 }

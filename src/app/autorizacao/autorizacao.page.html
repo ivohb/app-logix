@@ -1,0 +1,50 @@
+
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" defaultHref="login"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'AUTORIZAR_EMPRESA'|translate}}</ion-title>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+  
+  <div class="page-content">
+
+    <ion-card class="imagem120">
+      <img src="/assets/img/autorizar_empresa.png" alt=""/>
+      <ion-card-header>
+        <ion-card-title class="titulo">{{'EMPRESA_REGISTRO'|translate}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <form [formGroup]="fg" >
+
+      <ion-item lines="full"  class="label">
+        <ion-label for="cnpj" position="floating">{{ 'LABEL_CNPJ' | translate }}</ion-label>
+        <ion-input id="cnpj" formControlName="cnpj" type="text" (ionBlur)="format()"
+          class="caixa" clear-input="ture" spellcheck="false" maxlength="19">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="full"  class="label">
+        <ion-label for="chave" position="floating">{{ 'LABEL_CHAVE' | translate }}</ion-label>
+        <ion-input id="chave" formControlName="chave" type="text"
+          class="caixa" clear-input="ture" spellcheck="false" maxlength="36">
+        </ion-input>
+      </ion-item>
+
+      <div class="espaco-vertic20"></div>
+      <ion-button class="button"  (click)="authCompany()"  [disabled]="fg.invalid" expand="block" >
+        <ion-icon slot="start" name="checkbox-outline"></ion-icon>{{'BOTAO_AUTORIZAR'|translate}}
+      </ion-button>
+
+    </form>
+
+  </div>
+
+</ion-content>
+
+
+

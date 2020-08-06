@@ -43,7 +43,7 @@
           {{ 'LABEL_EMPRESA' | translate }}
         </ion-label>
         <ion-select id="empresa"  [(ngModel)]="login.empresa" name="empresa" >
-          <ion-select-option *ngFor="let e of empresas" [value]="e.id">{{e.nome}}</ion-select-option>
+          <ion-select-option *ngFor="let e of empresas" [value]="e.id">{{e.codinome}}</ion-select-option>
         </ion-select>
       </ion-item>
   
@@ -55,7 +55,7 @@
         </ion-button>
 
         <ion-button class="ion-text-capitalize link" (click)="autorizar()" fill="clear"> 
-          <ion-icon slot="start" color="medium" name="book"></ion-icon>
+          <ion-icon slot="start" color="medium" name="checkbox-outline"></ion-icon>
           {{ 'AUTORIZAR_EMPRESA' | translate }}
         </ion-button><br/>
 

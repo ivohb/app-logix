@@ -23,4 +23,13 @@ export class EmpresaService {
             `${API_CONFIG.apiUrl}/empresa/autorizada`);
     }
 
+    AuthCompany(obj : EmpresaDto) {
+        return this.http.patch(`${API_CONFIG.apiUrl}/empresa`, obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
 }

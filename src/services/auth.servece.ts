@@ -55,15 +55,16 @@ export class AuthService {
     }
 
     /*obtem token sem o prefixo Token
-    * cria e pupula obj user e o armazena no localStorage
     * obtém o código do usuario incluido no token
+    * cria e pupula obj user e o armazena no localStorage
     */ 
-   login(token : string, profile : string) {
+   login(token: string, profile: string, empresa: string) {
         let tok = token.substring(7); 
         let user : LocalUser = { 
             token: tok, 
             codigo: this.jwtHelper.decodeToken(tok).sub,
-            perfil: profile
+            perfil: profile,
+            empresa: empresa
         };
         this.storage.setLocalUser(user); 
     }
