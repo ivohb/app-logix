@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { EditarPageRoutingModule } from './editar-routing.module';
 import { EditarPage } from './editar.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { EdiClientProgramService } from 'src/services/edi.client.program.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule.forChild()
   ],
   declarations: [EditarPage],
-  providers: [  ]
+  providers: [ EdiClientProgramService ]
 
 })
 export class EditarPageModule {}

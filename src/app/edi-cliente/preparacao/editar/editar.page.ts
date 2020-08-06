@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EdiClienteDto } from 'src/models/edi.cliente.dto';
 import { LoadingService } from 'src/services/loading.service';
 import { NavController } from '@ionic/angular';
 import { AppFunction } from 'src/app/app.function';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ClienteItemService } from 'src/services/cliente.item.service';
 import { ClienteItemDto } from 'src/models/cliente.item.dto.';
+import { EdiClientProgramDto } from 'src/models/edi.client.program.dto';
+import { EdiClientProgramService } from 'src/services/edi.client.program.service';
 
 @Component({
   selector: 'app-editar',
@@ -16,19 +17,20 @@ import { ClienteItemDto } from 'src/models/cliente.item.dto.';
 export class EditarPage implements OnInit {
 
   fg: FormGroup;
-  model: EdiClienteDto;
+  model: EdiClientProgramDto;
   desabilita : boolean;
   excluir: boolean;
   loader: any;
   id: string;
 
-  lista: EdiClienteDto[] = [];
+  lista: EdiClientProgramDto[] = [];
   popup: ClienteItemDto[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private loading: LoadingService,
     private ciService: ClienteItemService,
+    private ecpService: EdiClientProgramService,
     private navCtrl: NavController, 
     private appFunc: AppFunction,
     public route: ActivatedRoute 
@@ -40,7 +42,7 @@ export class EditarPage implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit() {    
     this.fg = this.formBuilder.group({
       id:       ['', []],
       empresa:  ['', []],
@@ -48,18 +50,28 @@ export class EditarPage implements OnInit {
       produto:  ['', [Validators.required, Validators.maxLength(30)]]
     })
     this.findByEmpresa();
+    this.findByEdiCliente();
   }
-
 
   findByEmpresa() { 
     this.ciService.findByEmpresa('01')
     .subscribe(response => {
       this.popup = response;
-      console.log(this.popup);
     },
     error => {
       console.log(error);
     });
   }
 
+  findByEdiCliente() {
+    let ediCliente = Number(this.id);
+    this.ecpService.findByEdiCliente(ediCliente)
+    .subscribe(response => {
+      this.lista = response;
+      console.log(this.lista);
+    },
+    error => {
+      console.log(error);
+    });
+  }
 }
