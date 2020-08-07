@@ -93,7 +93,7 @@ export class EditarPage implements OnInit {
     }
   }
 
-  save() {      
+  save() {       
     if (this.fg.controls.id.value == 0) {
       this.insert();
     } else {

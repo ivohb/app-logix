@@ -30,7 +30,7 @@ export class PreparacaoPage implements OnInit {
   ngOnInit() {
     this.loadPrepar();
   }
-
+ 
   loadPrepar() {
     let localUser = this.storage.getLocalUser(); 
     this.service.findByEmpresaAndSituacao(localUser.empresa,'E')

@@ -9,47 +9,57 @@
       <ion-button color="salvar"  (click)="save()"  [disabled]="fg.invalid">
         <ion-icon  name="save" ></ion-icon> 
       </ion-button>
-      <ion-button color="delete" (click)="delete()" disabled="{{!excluir}}">
+      <ion-button color="delete" (click)="alertConfirm()" disabled="{{!excluir}}">
         <ion-icon name="trash" ></ion-icon> 
       </ion-button>
     </ion-buttons>
   </ion-toolbar>  
+  <ion-toolbar >
+    <form [formGroup]="fg" >
+      <ion-item lines="full"  class="label">
+        <ion-label for="pedido" position="floating" class="label">{{ 'LABEL_PEDIDO' | translate }}</ion-label>
+        <ion-input id="pedido" formControlName="pedido" type="text"  
+          class="caixa" clear-input="ture" spellcheck="false" maxlength="30">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full" class="label">
+        <ion-label for="produto" position="floating" class="label">{{ 'LABEL_PRODUTO' | translate }}</ion-label>
+        <ion-select id="produto"  formControlName="produto" class="caixa">
+          <ion-select-option *ngFor="let obj of popup" [value]="obj.itemCliente">{{obj.descricao}}</ion-select-option>
+        </ion-select>
+      </ion-item>  
+    </form>  
+  </ion-toolbar>    
+  <ion-item color="tabela">
+    <ion-col >{{'CABEC_ENTREGA'|translate}}</ion-col>
+    <ion-col >{{'CABEC_QUANT'|translate}}</ion-col>
+    <ion-col size="2">{{'CABEC_TIPO'|translate}}</ion-col>
+    <ion-col size="2">      
+      <ion-buttons >
+        <ion-button color="salvar" size="small" (click)="addObject()" >
+          <ion-icon slot="end" name="add-circle-outline" ></ion-icon> 
+        </ion-button>
+      </ion-buttons>
+    </ion-col>
+  </ion-item>
 </ion-header>
 
 <ion-content ion-padding>
-
-  <form [formGroup]="fg" >
-
-    <ion-item lines="full"  class="label">
-      <ion-label for="pedido" position="floating" class="label">{{ 'LABEL_PEDIDO' | translate }}</ion-label>
-      <ion-input id="pedido" formControlName="pedido" type="text"
-        class="caixa" clear-input="ture" spellcheck="false" maxlength="30">
-      </ion-input>
-    </ion-item>
-
-    <ion-item lines="full" class="label">
-      <ion-label for="produto" position="floating" class="label">{{ 'LABEL_PRODUTO' | translate }}</ion-label>
-      <ion-select id="produto"  formControlName="produto" class="caixa">
-        <ion-select-option *ngFor="let obj of popup" [value]="obj.itemCliente">{{obj.descricao}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-  </form>
-
   <ion-list >
-    <ion-item color="tabela">
-      <ion-col >{{'CABEC_ENTREGA'|translate}}</ion-col>
-      <ion-col >{{'CABEC_QUANT'|translate}}</ion-col>
-      <ion-col size="2">{{'CABEC_TIPO'|translate}}</ion-col>
-    </ion-item>
     <ion-item-sliding *ngFor="let obj of lista">      
-      <ion-item class="tabela" (click)="showObject(obj.id)">
+      <ion-item class="tabela" >
         <ion-col  > {{ obj.data }}</ion-col>
         <ion-col  > {{ obj.quantidade }}</ion-col>
         <ion-col size="2" > {{ obj.tipo }} </ion-col>
+        <ion-col size="2">      
+          <ion-buttons >
+            <ion-button color="delete" size="small" (click)="showObject(obj.id)" >
+              <ion-icon slot="end" name="create"></ion-icon>              
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
       </ion-item>  
     </ion-item-sliding>
-  </ion-list>
-  
+  </ion-list>  
 
 </ion-content>
