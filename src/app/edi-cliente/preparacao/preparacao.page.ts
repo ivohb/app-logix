@@ -52,6 +52,7 @@ export class PreparacaoPage implements OnInit {
   }
 
   showObject(id: string) {
+    this.service.storageEdi(id);
     let url = `/edi-cliente/preparacao/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }

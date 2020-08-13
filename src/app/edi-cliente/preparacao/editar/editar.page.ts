@@ -66,13 +66,14 @@ export class EditarPage implements OnInit {
       quantidade:  ['', [Validators.required]],
       tipo:        ['', [Validators.required]]
     })
+    let localEdi = this.storage.getLocalEdi(); 
+    this.id = localEdi.id;
     this.findByEmpresa();
     this.findByEdiCliente();
   }
 
   findByEmpresa() { 
     let localUser = this.storage.getLocalUser(); 
-    this.empresa = localUser.empresa;
     this.ciService.findByEmpresa(this.empresa)
     .subscribe(response => {
       this.popup = response;
@@ -88,7 +89,6 @@ export class EditarPage implements OnInit {
     this.ecpService.findByEdiCliente(ediCliente)
     .subscribe(response => {
       this.lista = response;
-      console.log(this.lista);
     },
     error => {
       console.log(error);
@@ -127,7 +127,6 @@ export class EditarPage implements OnInit {
   }
 
   save() { 
-    console.log(this.fg.value);
     if (this.fg.controls.id.value == 0) {
       this.insert();
     } else {
@@ -207,11 +206,13 @@ export class EditarPage implements OnInit {
   }
  
   showObject(id: string) {
-    console.log(id);
+    let url = `/edi-cliente/preparacao/editar/programacao/${id}`;
+    this.navCtrl.navigateBack(url);
+
   }  
 
   addObject() {
-
+    this.navCtrl.navigateBack('/edi-cliente/preparacao/editar/programacao/0'); 
   }
 
 }

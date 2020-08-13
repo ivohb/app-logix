@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage.service';
 import { API_CONFIG } from 'src/config/api.config';
+import { LocalEdi } from 'src/models/local_edi';
 
 @Injectable() //possibilita a injeção do serviço
 export class EdiClienteService {
@@ -11,6 +12,13 @@ export class EdiClienteService {
     constructor(
         public http: HttpClient,
         public storage: StorageService) {
+    }
+
+    storageEdi(id: string) {
+        let obj : LocalEdi = { 
+            id: id
+        };
+        this.storage.setLocalEdi(obj);
     }
 
     findByEmpresa(empresa: string) : Observable<EdiClienteDto[]>  {
@@ -55,6 +63,5 @@ export class EdiClienteService {
             }
         ); 
     }
-
 
 }

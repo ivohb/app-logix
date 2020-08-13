@@ -108,8 +108,11 @@ const routes: Routes = [
     path: 'edi-cliente/preparacao/editar/:id',
     loadChildren: () => import('./edi-cliente/preparacao/editar/editar.module').then( m => m.EditarPageModule)
   },
-
-
+  {
+    path: 'edi-cliente/preparacao/editar/programacao/:id',
+    loadChildren: () => import('./edi-cliente/preparacao/editar/programacao/programacao.module').then( m => m.ProgramacaoPageModule)
+  },
+ 
   {
     path: 'edi-kanban/:modulo',
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)

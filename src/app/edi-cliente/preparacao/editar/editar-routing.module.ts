@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EditarPage
+  },
+  { 
+    path: 'programacao',
+    loadChildren: () => import('./programacao/programacao.module').then( m => m.ProgramacaoPageModule)
   }
 ];
 

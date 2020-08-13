@@ -1,0 +1,62 @@
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" 
+        defaultHref="edi-cliente/:modulo/edi-cliente-preparar/editar"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'HEADER_PROGRAMACAO'|translate}}</ion-title>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+
+  <form [formGroup]="fg" >
+
+    <ion-item lines="full" class="label">
+      <ion-label for="id" stacked>{{ 'LABEL_ID' | translate }}</ion-label>
+      <ion-input id="id" readonly="true" formControlName="id" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label for="tipo" position="floating">
+        {{ 'LABEL_TIPO' | translate }}
+      </ion-label>
+      <ion-select id="tipo" formControlName="tipo" class="caixa"  >
+        <ion-select-option value="C">{{ 'TIPO_CONFIRMADA' | translate }} </ion-select-option>
+        <ion-select-option value="P">{{ 'TIPO_PLANEJADA' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full"  class="label">
+      <ion-label for="quantidade" position="floating" >
+         {{ 'LABEL_QUANTIDADE' | translate }}
+      </ion-label>
+      <ion-input id="quantidade" formControlName="quantidade" type="number"
+        class="caixa" clear-input="ture" spellcheck="false" >
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full"  class="label">
+      <ion-label for="data" position="floating" >
+        {{ 'LABEL_ENTREGA' | translate }}
+      </ion-label>
+      <ion-input id="data" formControlName="data" type="date"
+        class="caixa" clear-input="ture" spellcheck="false" >
+      </ion-input>
+    </ion-item>
+
+  </form>
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar color="tabela">
+    <ion-buttons slot="end">
+      <ion-button color="salvar"  (click)="save()"  [disabled]="fg.invalid">
+        <ion-icon  name="save" ></ion-icon> {{ 'BOTAO_SALVAR' | translate }}
+      </ion-button>
+      <ion-button color="delete" (click)="delete()" disabled="{{!excluir}}">
+        <ion-icon name="trash" ></ion-icon> {{ 'BOTAO_EXCLUIR' | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

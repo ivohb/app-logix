@@ -78,7 +78,6 @@ export class EditarPage implements OnInit {
         },
         error => {}); //função executada se der erro 
     }    
-  
   }
 
   setValues() {
