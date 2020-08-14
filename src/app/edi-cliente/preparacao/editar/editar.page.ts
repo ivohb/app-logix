@@ -20,13 +20,13 @@ import { EdiClienteDto } from 'src/models/edi.cliente.dto';
 export class EditarPage implements OnInit {
 
   fg: FormGroup;
-  fgItem: FormGroup;
   ecModel: EdiClienteDto;
   ecpModel: EdiClientProgramDto;
   desabilita : boolean;
   excluir: boolean;
   loader: any;
   id: string;
+  ediCliente: number;
   empresa: string;
   exibLista: boolean;
   exibCampo: boolean;
@@ -60,12 +60,6 @@ export class EditarPage implements OnInit {
       produto:  ['', [Validators.required, Validators.maxLength(30)]],
       situacao: ['', [Validators.required, Validators.maxLength(1)]]
     })
-    this.fgItem = this.formBuilder.group({
-      id:          ['', []],
-      data:        ['', [Validators.required]],
-      quantidade:  ['', [Validators.required]],
-      tipo:        ['', [Validators.required]]
-    })
     let localEdi = this.storage.getLocalEdi(); 
     this.id = localEdi.id;
     this.findByEmpresa();
@@ -74,7 +68,7 @@ export class EditarPage implements OnInit {
 
   findByEmpresa() { 
     let localUser = this.storage.getLocalUser(); 
-    this.ciService.findByEmpresa(this.empresa)
+    this.ciService.findByEmpresa(localUser.empresa)
     .subscribe(response => {
       this.popup = response;
     },
@@ -85,8 +79,8 @@ export class EditarPage implements OnInit {
 
   findByEdiCliente() {
     this.exibLista = true;
-    let ediCliente = Number(this.id);
-    this.ecpService.findByEdiCliente(ediCliente)
+    this.ediCliente = Number(this.id);
+    this.ecpService.findByEdiCliente(this.ediCliente)
     .subscribe(response => {
       this.lista = response;
     },

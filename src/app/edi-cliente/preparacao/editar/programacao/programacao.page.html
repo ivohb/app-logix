@@ -5,6 +5,11 @@
         defaultHref="edi-cliente/:modulo/edi-cliente-preparar/editar"></ion-back-button>
     </ion-buttons>
     <ion-title >{{'HEADER_PROGRAMACAO'|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="button-header" size="small" color="dark" (click)="addObject()">
+        <ion-icon slot="icon-only" name="add-circle-outline" ></ion-icon>
+      </ion-button> 
+    </ion-buttons>
   </ion-toolbar>  
 </ion-header>
 
@@ -15,6 +20,11 @@
     <ion-item lines="full" class="label">
       <ion-label for="id" stacked>{{ 'LABEL_ID' | translate }}</ion-label>
       <ion-input id="id" readonly="true" formControlName="id" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="label">
+      <ion-label for="ediCliente" stacked>{{ 'LABEL_NUM_EDI' | translate }}</ion-label>
+      <ion-input id="ediCliente" readonly="true" formControlName="ediCliente" type="Number"></ion-input>
     </ion-item>
 
     <ion-item lines="full" class="label">
