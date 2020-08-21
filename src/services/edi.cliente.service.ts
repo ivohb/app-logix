@@ -14,7 +14,7 @@ export class EdiClienteService {
         public storage: StorageService) {
     }
 
-    storageEdi(id: string) {
+    setLocalStorage(id: string) { 
         let obj : LocalEdi = { 
             id: id
         };

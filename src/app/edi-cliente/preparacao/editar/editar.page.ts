@@ -46,13 +46,13 @@ export class EditarPage implements OnInit {
     private alertCtrl: AlertController,
     private storage: StorageService
 
-  ) {
-    this.route.paramMap.subscribe( (params:ParamMap) =>  { 
-        this.id = params.get("id")
-     })
-  }
+  ) {  }
 
   ngOnInit() {    
+    let localUser = this.storage.getLocalUser(); 
+    this.empresa = localUser.empresa;
+    let localEdi = this.storage.getLocalEdi(); 
+    this.id = localEdi.id;
     this.fg = this.formBuilder.group({
       id:       ['', []],
       empresa:  ['', []],
@@ -60,15 +60,15 @@ export class EditarPage implements OnInit {
       produto:  ['', [Validators.required, Validators.maxLength(30)]],
       situacao: ['', [Validators.required, Validators.maxLength(1)]]
     })
-    let localEdi = this.storage.getLocalEdi(); 
-    this.id = localEdi.id;
     this.findByEmpresa();
-    this.findByEdiCliente();
+    if (this.id != '0') {
+      this.findByEdiCliente();
+    }    
   }
 
   findByEmpresa() { 
-    let localUser = this.storage.getLocalUser(); 
-    this.ciService.findByEmpresa(localUser.empresa)
+    let localCliente = this.storage.getLocalCliente();
+    this.ciService.findByEmpresaAndCliente(this.empresa, localCliente.cliente)
     .subscribe(response => {
       this.popup = response;
     },
@@ -121,6 +121,8 @@ export class EditarPage implements OnInit {
   }
 
   save() { 
+    let localUser = this.storage.getLocalUser(); 
+
     if (this.fg.controls.id.value == 0) {
       this.insert();
     } else {

@@ -13,9 +13,9 @@ export class ClienteItemService {
         public storage: StorageService) {
     }
 
-    findByEmpresa(empresa: string) : Observable<ClienteItemDto[]>  {
+    findByEmpresaAndCliente(empresa: string, cliente: string) : Observable<ClienteItemDto[]>  {
         return this.http.get<ClienteItemDto[]>
-            (`${API_CONFIG.apiUrl}/cliente/item/empresa?empresa=${empresa}`);
+            (`${API_CONFIG.apiUrl}/cliente/item/empresa/cliente?empresa=${empresa}&cliente=${cliente}`);
     }
 
 

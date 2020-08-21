@@ -28,7 +28,14 @@ export class PreparacaoPage implements OnInit {
   ) {   }
 
   ngOnInit() {
-    this.loadPrepar();
+    let localCliente = this.storage.getLocalCliente(); 
+    if (localCliente.cliente.length == 0) {
+      let texto = this.appFunc.getTexto("OPCAO_CLIENTE");
+      this.appFunc.mensagem(this.appFunc.getTexto('NAO_AUTORIZADO'), texto);
+      this.navCtrl.navigateBack('/edi-cliente/:modulo');
+    } else {
+      this.loadPrepar();  
+    }    
   }
  
   loadPrepar() {
@@ -48,11 +55,12 @@ export class PreparacaoPage implements OnInit {
   }
 
   addObject() {
+    this.service.setLocalStorage('0');
     this.navCtrl.navigateBack('/edi-cliente/preparacao/editar/0'); 
   }
 
   showObject(id: string) {
-    this.service.storageEdi(id);
+    this.service.setLocalStorage(id);
     let url = `/edi-cliente/preparacao/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }

@@ -74,7 +74,7 @@ export class LoginPage implements OnInit {
   entrar() {
    
     let msg = '';
-
+ 
     if (this.login.codigo.length == 0 ) {
       let texto = this.appFunc.getTexto("CAMPO_OBRIGATORIO")+": ";
       texto+=this.appFunc.getTexto("LABEL_CODIGO");

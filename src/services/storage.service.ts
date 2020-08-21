@@ -3,9 +3,30 @@ import { STORAGE_KEYS } from "../config/storage_keys.config";
 import { LocalUser } from "../models/local_user";
 import { LocalModulo } from 'src/models/local_modulo';
 import { LocalEdi } from 'src/models/local_edi';
+import { LocalCliente } from 'src/models/local.cliente';
 
 @Injectable()
 export class StorageService {
+
+    setLocalCliente(obj: LocalCliente) {
+        if (obj == null) {
+            localStorage.removeItem(STORAGE_KEYS.localCliente); 
+        }
+        else {
+            localStorage.setItem(STORAGE_KEYS.localCliente, JSON.stringify(obj)); 
+        }
+
+    }
+
+    getLocalCliente() : LocalCliente {
+        let obj = localStorage.getItem(STORAGE_KEYS.localCliente);
+        if (obj == null) {
+            return null;
+        }
+        else {
+            return JSON.parse(obj); //converte de string p/ json
+        }
+    }
 
     setLocalEdi(obj: LocalEdi) {
         if (obj == null) {

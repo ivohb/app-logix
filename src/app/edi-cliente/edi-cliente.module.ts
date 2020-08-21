@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { EdiClientePageRoutingModule } from './edi-cliente-routing.module';
 import { EdiClientePage } from './edi-cliente.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ClienteService } from 'src/services/cliente.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
     EdiClientePageRoutingModule,
     TranslateModule.forChild()
   ],
-  declarations: [EdiClientePage]
+  declarations: [EdiClientePage],
+  providers: [ClienteService ]
 })
 export class EdiClientePageModule {}

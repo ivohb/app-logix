@@ -35,23 +35,23 @@ export class ProcessoService {
         return this.http.get<ProcessoDto[]>(url);
     }
 
-        //A partir do perfil, retorna todos os processos que o usuário pode acessar
-        findByPerfil(perfil : string) : Observable<ProcessoDto[]>  {
-            return this.http.get<ProcessoDto[]>
-                (`${API_CONFIG.apiUrl}/processo/${perfil}/acessos`);
-        }
+    //A partir do perfil, retorna todos os processos que o usuário pode acessar
+    findByPerfil(perfil : string) : Observable<ProcessoDto[]>  {
+        return this.http.get<ProcessoDto[]>
+            (`${API_CONFIG.apiUrl}/processo/${perfil}/acessos`);
+    }
+
+    //A partir do perfil, retorna todos os processos que o usuário pode acessar
+    findByModulo(modulo : number) : Observable<ProcessoDto[]>  {
+        return this.http.get<ProcessoDto[]>
+            (`${API_CONFIG.apiUrl}/processo/${modulo}/processos`);
+    }
     
-        //A partir do perfil, retorna todos os processos que o usuário pode acessar
-        findByModulo(modulo : number) : Observable<ProcessoDto[]>  {
-            return this.http.get<ProcessoDto[]>
-                (`${API_CONFIG.apiUrl}/processo/${modulo}/processos`);
-        }
-        
-        //retorna os acessos que o usuário possui no módulo enviado
-        findByPerfilAndModulo(modulo: string) : Observable<ProcessoDto[]>  {
-            return this.http.get<ProcessoDto[]>
-                (`${API_CONFIG.apiUrl}/processo/acessos?modulo=${modulo}`);
-        }
+    //retorna os acessos que o usuário possui no módulo enviado
+    findByPerfilAndModulo(modulo: string) : Observable<ProcessoDto[]>  {
+        return this.http.get<ProcessoDto[]>
+            (`${API_CONFIG.apiUrl}/processo/acessos?modulo=${modulo}`);
+    }
         
     insert(obj : ProcessoDto) {
         return this.http.post(`${API_CONFIG.apiUrl}/processo`, obj,
@@ -88,6 +88,5 @@ export class ProcessoService {
         };
     this.storage.setLocalModulo(module); 
     }
-
-
+    
 }
