@@ -101,10 +101,6 @@ const routes: Routes = [
     loadChildren: () => import('./edi-cliente/preparacao/preparacao.module').then( m => m.PreparacaoPageModule)
   },
   {
-    path: 'edi-cliente/preparacao/pesquisar',
-    loadChildren: () => import('./edi-cliente/preparacao/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
-  },
-  {
     path: 'edi-cliente/preparacao/editar/:id',
     loadChildren: () => import('./edi-cliente/preparacao/editar/editar.module').then( m => m.EditarPageModule)
   },
@@ -112,7 +108,15 @@ const routes: Routes = [
     path: 'edi-cliente/preparacao/editar/programacao/:id',
     loadChildren: () => import('./edi-cliente/preparacao/editar/programacao/programacao.module').then( m => m.ProgramacaoPageModule)
   },
- 
+  {
+    path: 'edi-cliente/:modulo/edi-cliente-integrar',
+    loadChildren: () => import('./edi-cliente/integracao/integracao.module').then( m => m.IntegracaoPageModule)
+  },
+  {
+    path: 'edi-cliente/integracao/editar/:id',
+    loadChildren: () => import('./edi-cliente/integracao/editar/editar.module').then( m => m.EditarPageModule)
+  },
+
   {
     path: 'edi-kanban/:modulo',
     loadChildren: () => import('./edi-kanban/edi-kanban.module').then( m => m.EdiKanbanPageModule)

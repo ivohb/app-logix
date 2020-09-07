@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-toolbar color="header">
+    <ion-buttons slot="start">
+      <ion-back-button class="button-header" 
+        defaultHref="edi-cliente/:modulo/edi-cliente-integrar"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{'HEADER_INTEGRACAO_EDI'|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark" (click)="integrateAll()" >        
+        <ion-icon name="done-all"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content ion-padding>
+  <ion-item color="tabela">
+    <ion-col >{{'CABEC_ENTREGA'|translate}}</ion-col>
+    <ion-col >{{'CABEC_QUANT'|translate}}</ion-col>
+    <ion-col size="2">{{'CABEC_TIPO'|translate}}</ion-col>
+    <ion-col size="2">op</ion-col>
+  </ion-item>
+  <ion-list >
+    <ion-item-sliding *ngFor="let obj of lista">      
+      <ion-item class="tabela" >
+        <ion-col  > {{ obj.data }}</ion-col>
+        <ion-col  > {{ obj.quantidade }}</ion-col>
+        <ion-col size="2" > {{ obj.tipo }} </ion-col>
+        <ion-col size="2">      
+          <ion-buttons >
+            <ion-button color="edit" size="small"  (click)="integrate(obj.id)" >
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-item>  
+    </ion-item-sliding>
+  </ion-list>  
+
+</ion-content>

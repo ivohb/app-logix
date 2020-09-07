@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { EdiClienteDto } from 'src/models/edi.cliente.dto';
-import { LoadingService } from 'src/services/loading.service';
 import { EdiClienteService } from 'src/services/edi.cliente.service';
 import { AppFunction } from 'src/app/app.function';
 import { NavController } from '@ionic/angular';
 import { StorageService } from 'src/services/storage.service';
 
 @Component({
-  selector: 'app-preparacao',
-  templateUrl: './preparacao.page.html',
-  styleUrls: ['./preparacao.page.scss'],
+  selector: 'app-integracao',
+  templateUrl: './integracao.page.html',
+  styleUrls: ['./integracao.page.scss'],
 })
-export class PreparacaoPage implements OnInit {
+export class IntegracaoPage implements OnInit {
 
   lista : EdiClienteDto[] = [];  
-  numberPage: number = 0;
-  totalPage: number = 0;
-  totalElement: number = 0;
-  searchkey: string = '';
-
+  
   constructor(  
-    private loading: LoadingService,
     private service: EdiClienteService,
     private appFunc: AppFunction,
     private navCtrl: NavController,
@@ -40,7 +34,7 @@ export class PreparacaoPage implements OnInit {
  
   loadPrepar() {
     let localUser = this.storage.getLocalUser(); 
-    this.service.findByEmpresaAndSituacao(localUser.empresa,'E')
+    this.service.findByEmpresaAndSituacao(localUser.empresa,'C')
     .subscribe(
       response => { 
         this.lista = response; 
@@ -50,16 +44,10 @@ export class PreparacaoPage implements OnInit {
       }); 
   }
 
-  addObject() {
-    this.service.setLocalStorage('0');
-    this.navCtrl.navigateBack('/edi-cliente/preparacao/editar/0'); 
-  }
-
   showObject(id: string) {
     this.service.setLocalStorage(id);
-    let url = `/edi-cliente/preparacao/editar/${id}`;
+    let url = `/edi-cliente/integracao/editar/${id}`;
     this.navCtrl.navigateBack(url);
   }
-
 
 }

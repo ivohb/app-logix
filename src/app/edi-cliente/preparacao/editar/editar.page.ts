@@ -30,6 +30,7 @@ export class EditarPage implements OnInit {
   empresa: string;
   exibLista: boolean;
   exibCampo: boolean;
+  semProgramacao: boolean;
 
   lista: EdiClientProgramDto[] = [];
   popup: ClienteItemDto[] = [];
@@ -79,10 +80,14 @@ export class EditarPage implements OnInit {
 
   findByEdiCliente() {
     this.exibLista = true;
+    this.semProgramacao = true;
     this.ediCliente = Number(this.id);
     this.ecpService.findByEdiCliente(this.ediCliente)
     .subscribe(response => {
       this.lista = response;
+      if (this.lista.length > 0) {
+        this.semProgramacao = false;
+      }
     },
     error => {
       console.log(error);
@@ -98,7 +103,7 @@ export class EditarPage implements OnInit {
       this.excluir = false;
     } else {
       this.desabilita = true;
-      this.ecService.findById(this.id) //chamada assincrona da função
+      this.ecService.findById(this.id) 
       .subscribe(
         response => { //função executa na resposta, se tudo ok
           this.ecModel = response; //captura os usuários
@@ -138,6 +143,8 @@ export class EditarPage implements OnInit {
       let url =  response.headers.get('Location');
       this.id = this.appFunc.getIdByUrl(url);
       this.fg.controls.id.setValue(this.id);
+      this.ecService.setLocalStorage(this.id);
+      this.ecService.findById(this.id) 
       this.excluir = true;
       this.loading.loadingDismiss();
       let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
@@ -201,6 +208,22 @@ export class EditarPage implements OnInit {
     });        
   }
  
+  concluir() {
+
+    this.loading.loadingPresent();  
+    this.ecService.updateSituaco(this.fg.controls.id.value)
+    .subscribe(response => {
+      this.loading.loadingDismiss();
+      let texto = this.appFunc.getTexto("OPERACAO_SUCESSO");
+      this.appFunc.presentToast(texto);
+      this.ecModel = null;
+      this.navCtrl.back();
+    },
+    error => {
+      this.loading.loadingDismiss();
+    });        
+  }
+
   showObject(id: string) {
     let url = `/edi-cliente/preparacao/editar/programacao/${id}`;
     this.navCtrl.navigateBack(url);

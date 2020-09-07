@@ -12,6 +12,9 @@
       <ion-button color="delete" (click)="alertConfirm()" disabled="{{!excluir}}">
         <ion-icon name="trash" ></ion-icon> 
       </ion-button>
+      <ion-button color="dark" (click)="concluir()" disabled="{{semProgramacao}}">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>  
   <ion-toolbar >
@@ -36,7 +39,7 @@
     <ion-col size="2">{{'CABEC_TIPO'|translate}}</ion-col>
     <ion-col size="2">      
       <ion-buttons >
-        <ion-button color="salvar" size="small" (click)="addObject()" >
+        <ion-button color="dark" size="small" disabled="{{!excluir}}" (click)="addObject()" >
           <ion-icon slot="end" name="add-circle-outline" ></ion-icon> 
         </ion-button>
       </ion-buttons>
@@ -53,7 +56,7 @@
         <ion-col size="2" > {{ obj.tipo }} </ion-col>
         <ion-col size="2">      
           <ion-buttons >
-            <ion-button color="delete" size="small" (click)="showObject(obj.id)" >
+            <ion-button color="edit" size="small"  disabled="{{!excluir}}" (click)="showObject(obj.id)" >
               <ion-icon slot="end" name="create"></ion-icon>              
             </ion-button>
           </ion-buttons>

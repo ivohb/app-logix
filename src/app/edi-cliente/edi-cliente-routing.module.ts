@@ -11,7 +11,12 @@ const routes: Routes = [
   {
     path: 'preparacao',
     loadChildren: () => import('./preparacao/preparacao.module').then( m => m.PreparacaoPageModule)
-  }
+  },
+  {
+    path: 'integracao',
+    loadChildren: () => import('./integracao/integracao.module').then( m => m.IntegracaoPageModule)
+  },
+  
 ];
 
 @NgModule({

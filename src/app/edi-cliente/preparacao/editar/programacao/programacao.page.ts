@@ -58,14 +58,14 @@ export class ProgramacaoPage implements OnInit {
     } else {
       this.desabilita = true;
       this.excluir = true;
-      this.service.findById(this.id) //chamada assincrona da função
+      this.service.findById(this.id) 
       .subscribe(
-        response => { //função executa na resposta, se tudo ok
-          this.model = response; //captura os usuários
+        response => { 
+          this.model = response; 
           console.log(this.model);
           this.setValues();
         },
-        error => {}); //função executada se der erro 
+        error => {});
     }    
   
   }

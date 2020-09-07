@@ -25,7 +25,7 @@ export class EdiClienteService {
         return this.http.get<EdiClienteDto[]>
             (`${API_CONFIG.apiUrl}/edi/cliente/empresa?empresa=${empresa}`);
     }
-   
+
     findByEmpresaAndSituacao(empresa: string, situacao: string) : Observable<EdiClienteDto[]>  {
         return this.http.get<EdiClienteDto[]>
             (`${API_CONFIG.apiUrl}/edi/cliente/empresa/situacao?empresa=${empresa}&situacao=${situacao}`);
@@ -57,6 +57,15 @@ export class EdiClienteService {
 
     delete(id : string) {
         return this.http.delete(`${API_CONFIG.apiUrl}/edi/cliente/${id}`,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    updateSituaco(id : string) {
+        return this.http.patch(`${API_CONFIG.apiUrl}/edi/cliente/${id}`,
             { 
                 observe: 'response', 
                 responseType: 'text'
